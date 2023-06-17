@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:magic_view/factory.dart';
 import 'package:magic_view/property/font/font.dart';
 import 'package:magic_view/style/MagicTextStyle.dart';
+import 'package:magic_view/widget/button/MagicButton.dart';
 import 'package:magic_view/widget/text/MagicText.dart';
 import 'package:magic_view/widget/text/MagicTextIcon.dart';
 
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
             MagicText.hint("MagicText dengan tipe hint"),
             Divider(),
             MagicTextIcon.icon(
-              "MagicTextIcon",
+              "MagicTextIcon with Icon",
               icon: Icons.apple,
               side: MagicTextIconSide.left,
               spaces: 8,
@@ -83,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
               verticalAlignment: CrossAxisAlignment.start,
             ),
             MagicTextIcon.network(
-              "MagicTextIcon",
+              "MagicTextIcon with Network",
               url: "https://cdn-icons-png.flaticon.com/128/415/415733.png",
               side: MagicTextIconSide.left,
               spaces: 8,
@@ -94,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
               verticalAlignment: CrossAxisAlignment.start,
             ),
             MagicTextIcon.asset(
-              "MagicTextIcon",
+              "MagicTextIcon with Asset",
               asset: "assets/asset-example.png",
               side: MagicTextIconSide.left,
               spaces: 8,
@@ -104,6 +105,28 @@ class _MyHomePageState extends State<MyHomePage> {
               horizontalAlignment: MainAxisAlignment.start,
               verticalAlignment: CrossAxisAlignment.start,
             ),
+            Divider(),
+            MagicButton(
+              () {
+                // Do Something here
+              },
+              text: "Tekan Disini",
+            ),
+            MagicButton(
+              () {},
+              text: "Teks",
+              child: MagicTextIcon.network(
+                "MagicTextIcon with Network",
+                url: "https://cdn-icons-png.flaticon.com/128/415/415733.png",
+                side: MagicTextIconSide.left,
+                spaces: 8,
+                width: 16,
+                height: 16,
+                textStyle: MagicFactory.magicTextStyle,
+                horizontalAlignment: MainAxisAlignment.start,
+                verticalAlignment: CrossAxisAlignment.start,
+              ),
+            )
           ],
         ),
       ),

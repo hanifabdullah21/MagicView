@@ -6,6 +6,8 @@ import 'package:magic_view/style/MagicTextStyle.dart';
 class MagicFactory {
   /// Mengatur warna
   static Color colorBrand = Color(0xFF4086EF);
+  static Color colorBrand2 = Color(0xFFFFFFFF);
+  static Color colorStroke = colorBrand;
   static Color colorText = Color(0xFF2F2F2F);
 
   /// Mengatur font yang akan digunakan
@@ -22,4 +24,7 @@ class MagicFactory {
     color: colorText,
     fontStyle: FontStyle.normal,
   );
+
+  /// Mengatur radius tombol [default]
+  static double buttonRadius = 20;
 }
