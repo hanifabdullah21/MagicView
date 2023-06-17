@@ -163,18 +163,19 @@ MagicTextIcon.icon(
 
 Properti yang dapat digunakan
 
-| Nama                  | Tipe                   | Tersedia di           | Keterangan                               |
-|-----------------------|------------------------|-----------------------|------------------------------------------|
-| `asset`               | `String`               | `asset`               | Memuat gambar dari aset lokal            |
-| `url`                 | `String`               | `network`             | Memuat gambar dari internet              |
-| `icon`                | `IconData`             | `icon`                | Memuat gambar dari icon                  |
-| `spaces`              | `double`               | semua                 | Mengatur jarak antara teks dengan gambar |
-| `size`                | `double`               | `icon`                | Mengatur ukuran dari gambar              |
-| `width`               | `double`               | `asset` dan `network` | Mengatur lebar gambar                    |
-| `height`              | `double`               | `asset` dan `network` | Mengatur tinggi gambar                   |
-| `textStyle`           | `MagicTextStyle`       | semua                 | Mengatur gaya teks                       |
-| `horizontalAlignment` | `MainAxisAlignment?`   | semua                 | Mengatur perataan horisontal             |
-| `verticalAlignment`   | `CrossAxisAlignment?`  | semua                 | Mengatur perataan vertikal               |
+| Nama                  | Tipe                  | Tersedia di           | Keterangan                               |
+|-----------------------|-----------------------|-----------------------|------------------------------------------|
+| `asset`               | `String`              | `asset`               | Memuat gambar dari aset lokal            |
+| `url`                 | `String`              | `network`             | Memuat gambar dari internet              |
+| `icon`                | `IconData`            | `icon`                | Memuat gambar dari icon                  |
+| `spaces`              | `double`              | semua                 | Mengatur jarak antara teks dengan gambar |
+| `size`                | `double`              | `icon`                | Mengatur ukuran dari gambar              |
+| `width`               | `double`              | `asset` dan `network` | Mengatur lebar gambar                    |
+| `height`              | `double`              | `asset` dan `network` | Mengatur tinggi gambar                   |
+| `textStyle`           | `MagicTextStyle`      | semua                 | Mengatur gaya teks                       |
+| `horizontalAlignment` | `MainAxisAlignment?`  | semua                 | Mengatur perataan horisontal             |
+| `verticalAlignment`   | `CrossAxisAlignment?` | semua                 | Mengatur perataan vertikal               |
+| `color`               | `Color?`              | semua                 | Mengatur warna dari gambar               |
 
 ## MagicButton
 

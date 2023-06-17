@@ -31,6 +31,9 @@ class MagicTextIcon extends StatelessWidget {
   /// Mengatur perataan secara horizontal
   final MainAxisAlignment horizontalAlignment;
 
+  /// Mengatur warna dari gambar
+  final Color? color;
+
   /// Jika [type] = [MagicTextIconType.ASSET] maka variabel ini akan dipakai
   /// untuk menampilkan gambar dari lokal aset
   String? asset;
@@ -64,6 +67,7 @@ class MagicTextIcon extends StatelessWidget {
     this.width,
     this.side = MagicTextIconSide.left,
     this.spaces = 8,
+    this.color,
     this.verticalAlignment = CrossAxisAlignment.center,
     this.horizontalAlignment = MainAxisAlignment.start,
     Key? key,
@@ -78,6 +82,7 @@ class MagicTextIcon extends StatelessWidget {
     this.textStyle,
     this.height,
     this.width,
+    this.color,
     this.side = MagicTextIconSide.left,
     this.spaces = 8,
     this.verticalAlignment = CrossAxisAlignment.center,
@@ -93,6 +98,7 @@ class MagicTextIcon extends StatelessWidget {
     required this.icon,
     this.textStyle,
     this.size,
+    this.color,
     this.side = MagicTextIconSide.left,
     this.spaces = 8,
     this.verticalAlignment = CrossAxisAlignment.center,
@@ -127,17 +133,20 @@ class MagicTextIcon extends StatelessWidget {
           "$asset",
           width: width,
           height: height,
+          color: color,
         );
       case MagicTextIconType.network:
         return Image.network(
           "$url",
           width: width,
           height: height,
+          color: color,
         );
       case MagicTextIconType.icon:
         return Icon(
           icon,
           size: size,
+          color: color,
         );
       default:
         return Container();
