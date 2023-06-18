@@ -1,28 +1,51 @@
-class FontFamily{
-  const FontFamily._(this.index, this.value);
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class FontFamily {
+  FontFamily._(this.index, this.value, this.textTheme);
 
   final int index;
 
   final String value;
 
-  static const lato = FontFamily._(0, "Lato");
-  static const roboto = FontFamily._(1, 'Roboto');
-  static const openSans = FontFamily._(2, 'Open Sans');
-  static const montserrat = FontFamily._(3, 'Montserrat');
-  static const oswald = FontFamily._(4, 'Oswald');
-  static const raleway = FontFamily._(5, 'Raleway');
-  static const notoSans = FontFamily._(6, 'Noto Sans');
-  static const poppins = FontFamily._(7, 'Poppins');
-  static const sourceSansPro = FontFamily._(8, 'Source Sans Pro');
-  static const ubuntu = FontFamily._(9, 'Ubuntu');
-  static const merriweather = FontFamily._(10, 'Merriweather');
-  static const workSans = FontFamily._(11, 'Work Sans');
-  static const robotoCondensed = FontFamily._(12, 'Roboto Condensed');
-  static const ptSans = FontFamily._(13, 'PT Sans');
-  static const droidSans = FontFamily._(14, 'Droid Sans');
-  static const playfairDisplay = FontFamily._(15, 'Playfair Display');
-  static const comfortaa = FontFamily._(16, 'Comfortaa');
-  static const exo = FontFamily._(17, 'Exo');
-  static const inconsolata = FontFamily._(18, 'Inconsolata');
-  static const quicksand = FontFamily._(19, 'Quicksand');
+  final TextTheme textTheme;
+
+  static final lato = FontFamily._(0, "Lato", GoogleFonts.latoTextTheme());
+  static final roboto =
+      FontFamily._(1, 'Roboto', GoogleFonts.robotoTextTheme());
+  static final openSans =
+      FontFamily._(2, 'Open Sans', GoogleFonts.openSansTextTheme());
+  static final montserrat =
+      FontFamily._(3, 'Montserrat', GoogleFonts.montserratTextTheme());
+  static final oswald =
+      FontFamily._(4, 'Oswald', GoogleFonts.oswaldTextTheme());
+  static final raleway =
+      FontFamily._(5, 'Raleway', GoogleFonts.ralewayTextTheme());
+  static final notoSans =
+      FontFamily._(6, 'Noto Sans', GoogleFonts.notoSansTextTheme());
+  static final poppins =
+      FontFamily._(7, 'Poppins', GoogleFonts.poppinsTextTheme());
+  static final sourceSansPro =
+      FontFamily._(8, 'Source Sans Pro', GoogleFonts.sourceSansProTextTheme());
+  static final ubuntu =
+      FontFamily._(9, 'Ubuntu', GoogleFonts.ubuntuTextTheme());
+  static final merriweather =
+      FontFamily._(10, 'Merriweather', GoogleFonts.merriweatherTextTheme());
+  static final workSans =
+      FontFamily._(11, 'Work Sans', GoogleFonts.workSansTextTheme());
+  static final robotoCondensed = FontFamily._(
+      12, 'Roboto Condensed', GoogleFonts.robotoCondensedTextTheme());
+  static final ptSans =
+      FontFamily._(13, 'PT Sans', GoogleFonts.ptSansTextTheme());
+  static final droidSans =
+      FontFamily._(14, 'Droid Sans', GoogleFonts.openSansTextTheme());
+  static final playfairDisplay = FontFamily._(
+      15, 'Playfair Display', GoogleFonts.playfairDisplayTextTheme());
+  static final comfortaa =
+      FontFamily._(16, 'Comfortaa', GoogleFonts.comfortaaTextTheme());
+  static final exo = FontFamily._(17, 'Exo', GoogleFonts.exoTextTheme());
+  static final inconsolata =
+      FontFamily._(18, 'Inconsolata', GoogleFonts.inconsolataTextTheme());
+  static final quicksand =
+      FontFamily._(19, 'Quicksand', GoogleFonts.quicksandTextTheme());
 }

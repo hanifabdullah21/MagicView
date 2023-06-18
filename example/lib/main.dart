@@ -5,6 +5,7 @@ import 'package:magic_view/style/MagicTextStyle.dart';
 import 'package:magic_view/widget/button/MagicButton.dart';
 import 'package:magic_view/widget/text/MagicText.dart';
 import 'package:magic_view/widget/text/MagicTextIcon.dart';
+import 'package:magic_view/widget/textfield/MagicTextField.dart';
 
 void main() {
   /// Jika anda ingin mengganti nilai-nilai default pada library,
@@ -48,88 +49,139 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            MagicText(
-              "MagicText dengan mengatur property style",
-              style: MagicTextStyle(
-                  maxLines: 1,
-                  fontWeight: FontWeight.normal,
-                  fontFamily: FontFamily.lato,
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontStyle: FontStyle.normal,
-                  textOverflow: null,
-                  textAlign: null),
-            ),
-            MagicText("MagicText dengan mengatur properti satuan",
-                maxLines: 1,
-                fontWeight: FontWeight.normal,
-                fontFamily: FontFamily.lato,
-                color: Colors.black,
-                fontSize: 14,
-                fontStyle: FontStyle.normal,
-                textOverflow: null,
-                textAlign: null),
-            MagicText.head("MagicText dengan tipe Head"),
-            MagicText.subhead("MagicText dengan tipe Subhead"),
-            MagicText.hint("MagicText dengan tipe hint"),
+            textColumn(),
             Divider(),
-            MagicTextIcon.icon(
-              "MagicTextIcon with Icon",
-              icon: Icons.apple,
-              side: MagicTextIconSide.left,
-              spaces: 8,
-              size: 16,
-              textStyle: MagicFactory.magicTextStyle,
-              horizontalAlignment: MainAxisAlignment.start,
-              verticalAlignment: CrossAxisAlignment.start,
-            ),
-            MagicTextIcon.network(
-              "MagicTextIcon with Network",
-              url: "https://cdn-icons-png.flaticon.com/128/415/415733.png",
-              side: MagicTextIconSide.left,
-              spaces: 8,
-              width: 16,
-              height: 16,
-              textStyle: MagicFactory.magicTextStyle,
-              horizontalAlignment: MainAxisAlignment.start,
-              verticalAlignment: CrossAxisAlignment.start,
-            ),
-            MagicTextIcon.asset(
-              "MagicTextIcon with Asset",
-              asset: "assets/asset-example.png",
-              side: MagicTextIconSide.left,
-              spaces: 8,
-              width: 16,
-              height: 16,
-              textStyle: MagicFactory.magicTextStyle,
-              horizontalAlignment: MainAxisAlignment.start,
-              verticalAlignment: CrossAxisAlignment.start,
-            ),
+            textIconColumn(),
             Divider(),
-            MagicButton(
-              () {
-                // Do Something here
-              },
-              text: "Tekan Disini",
-            ),
-            MagicButton(
-              () {},
-              text: "Teks",
-              child: MagicTextIcon.network(
-                "MagicTextIcon with Network",
-                url: "https://cdn-icons-png.flaticon.com/128/415/415733.png",
-                side: MagicTextIconSide.left,
-                spaces: 8,
-                width: 16,
-                height: 16,
-                textStyle: MagicFactory.magicTextStyle,
-                horizontalAlignment: MainAxisAlignment.start,
-                verticalAlignment: CrossAxisAlignment.start,
-              ),
-            )
+            buttonColumn(),
+            Divider(),
+            textFieldColumn(),
           ],
         ),
       ),
+    );
+  }
+
+  Widget textColumn() {
+    return Column(
+      children: [
+        MagicText(
+          "MagicText dengan mengatur property style",
+          style: MagicTextStyle(
+              maxLines: 1,
+              fontWeight: FontWeight.normal,
+              fontFamily: FontFamily.lato,
+              color: Colors.black,
+              fontSize: 14,
+              fontStyle: FontStyle.normal,
+              textOverflow: null,
+              textAlign: null),
+        ),
+        MagicText("MagicText dengan mengatur properti satuan",
+            maxLines: 1,
+            fontWeight: FontWeight.normal,
+            fontFamily: FontFamily.lato,
+            color: Colors.black,
+            fontSize: 14,
+            fontStyle: FontStyle.normal,
+            textOverflow: null,
+            textAlign: null),
+        MagicText.head("MagicText dengan tipe Head"),
+        MagicText.subhead("MagicText dengan tipe Subhead"),
+        MagicText.hint("MagicText dengan tipe hint"),
+      ],
+    );
+  }
+
+  Widget textIconColumn() {
+    return Column(
+      children: [
+        MagicTextIcon.icon(
+          "MagicTextIcon with Icon",
+          icon: Icons.apple,
+          side: MagicTextIconSide.left,
+          spaces: 8,
+          size: 16,
+          textStyle: MagicFactory.magicTextStyle,
+          horizontalAlignment: MainAxisAlignment.start,
+          verticalAlignment: CrossAxisAlignment.start,
+        ),
+        MagicTextIcon.network(
+          "MagicTextIcon with Network",
+          url: "https://cdn-icons-png.flaticon.com/128/415/415733.png",
+          side: MagicTextIconSide.left,
+          spaces: 8,
+          width: 16,
+          height: 16,
+          textStyle: MagicFactory.magicTextStyle,
+          horizontalAlignment: MainAxisAlignment.start,
+          verticalAlignment: CrossAxisAlignment.start,
+        ),
+        MagicTextIcon.asset(
+          "MagicTextIcon with Asset",
+          asset: "assets/asset-example.png",
+          side: MagicTextIconSide.left,
+          spaces: 8,
+          width: 16,
+          height: 16,
+          textStyle: MagicFactory.magicTextStyle,
+          horizontalAlignment: MainAxisAlignment.start,
+          verticalAlignment: CrossAxisAlignment.start,
+        ),
+      ],
+    );
+  }
+
+  Widget buttonColumn() {
+    return Column(
+      children: [
+        MagicButton(
+          () {
+            // Do Something here
+          },
+          text: "Tekan Disini",
+        ),
+        MagicButton(
+          () {},
+          text: "Teks",
+          child: MagicTextIcon.network(
+            "MagicTextIcon with Network",
+            url: "https://cdn-icons-png.flaticon.com/128/415/415733.png",
+            side: MagicTextIconSide.left,
+            spaces: 8,
+            width: 16,
+            height: 16,
+            textStyle: MagicFactory.magicTextStyle,
+            horizontalAlignment: MainAxisAlignment.start,
+            verticalAlignment: CrossAxisAlignment.start,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget textFieldColumn() {
+    TextEditingController controller = TextEditingController();
+
+    return Column(
+      children: [
+        MagicTextField(
+          controller,
+          hint: "Masukkan nama",
+        ),
+        MagicTextField.password(
+          controller,
+          hint: "Masukkan nama",
+        ),
+        MagicTextField.border(
+          controller,
+          hint: "Masukkan nama",
+        ),
+        MagicTextField.borderPassword(
+          controller,
+          hint: "Masukkan nama",
+        ),
+      ],
     );
   }
 }
