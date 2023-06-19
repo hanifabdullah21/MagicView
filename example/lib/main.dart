@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:magic_view/factory.dart';
 import 'package:magic_view/property/font/font.dart';
+import 'package:magic_view/style/AutoCompleteData.dart';
 import 'package:magic_view/style/MagicTextStyle.dart';
 import 'package:magic_view/widget/button/MagicButton.dart';
 import 'package:magic_view/widget/text/MagicText.dart';
 import 'package:magic_view/widget/text/MagicTextIcon.dart';
+import 'package:magic_view/widget/textfield/MagicAutoComplete.dart';
 import 'package:magic_view/widget/textfield/MagicTextField.dart';
 
 void main() {
@@ -45,10 +47,43 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: MagicAutoComplete<String>(
+                    controller: TextEditingController(),
+                    list: [
+                      AutoCompleteData<String>("Hanif3", "data"),
+                      AutoCompleteData<String>("Hanif3", "data"),
+                      AutoCompleteData<String>("Hanif3", "data"),
+                    ],
+                    onSelected: (selectedData){
+
+                    },
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: MagicAutoComplete<String>(
+                    controller: TextEditingController(),
+                    list: [
+                      AutoCompleteData<String>("Hanif3", "data"),
+                      AutoCompleteData<String>("Hanif3", "data"),
+                      AutoCompleteData<String>("Hanif3", "data"),
+                    ],
+                    onSelected: (selectedData){
+
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Divider(),
             textColumn(),
             Divider(),
             textIconColumn(),
@@ -56,6 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
             buttonColumn(),
             Divider(),
             textFieldColumn(),
+            Divider(),
           ],
         ),
       ),
