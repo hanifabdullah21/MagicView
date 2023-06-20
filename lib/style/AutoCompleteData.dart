@@ -1,8 +1,9 @@
 class AutoCompleteData<T> {
   String? option;
+  bool enable;
   T? data;
 
-  AutoCompleteData(this.option, this.data);
+  AutoCompleteData(this.option, this.data, {this.enable = true});
 }
 
 /// Contoh konversi data dari List of Object <T> menjadi List<AutocompleteData>

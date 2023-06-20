@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:magic_view/factory.dart';
 import 'package:magic_view/style/AutoCompleteData.dart';
+import 'package:magic_view/style/MagicTextStyle.dart';
 import 'package:magic_view/widget/textfield/MagicTextField.dart';
 import 'package:substring_highlight/substring_highlight.dart';
 
@@ -111,9 +112,19 @@ class MagicAutoComplete<T extends Object> extends StatelessWidget {
                               title: SubstringHighlight(
                                 text: value,
                                 term: controller.text,
+                                textStyle: MagicFactory.magicTextStyle
+                                    .copyWith(
+                                        color: data.enable
+                                            ? MagicFactory.colorText
+                                            : MagicFactory.colorDisable)
+                                    .toGoogleTextStyle(),
                                 textStyleHighlight: const TextStyle(
                                     fontWeight: FontWeight.w700),
                               ),
+                              enabled: data.enable,
+                              hoverColor: data.enable
+                                  ? Colors.grey
+                                  : Colors.transparent,
                               onTap: () {
                                 onSelected(data);
                               },
