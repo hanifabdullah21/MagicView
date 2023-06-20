@@ -57,6 +57,9 @@ class MagicButton extends StatelessWidget {
   /// Mengatur jarak ke dalam antara tombol dengan `child`-nya
   final EdgeInsetsGeometry? padding;
 
+  /// Mengatur lebar option menjadi memenuhi layar atau tidak
+  final bool? widthInfinity;
+
   const MagicButton(
     this.onPressed, {
     super.key,
@@ -73,36 +76,44 @@ class MagicButton extends StatelessWidget {
     this.radius,
     this.padding,
     this.child,
+    this.widthInfinity,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: background ?? MagicFactory.colorBrand,
-        foregroundColor: foreground ?? MagicFactory.colorBrand2,
-        padding: padding,
-        shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(radius ?? MagicFactory.buttonRadius),
-          side: strokeWidth == 0
-              ? BorderSide.none
-              : BorderSide(
-                  color: strokeColor ?? MagicFactory.colorStroke,
-                  width: strokeWidth,
-                ),
-        ),
-      ),
-      child: child ??
-          MagicText(
-            text ?? "",
-            style: textStyle,
-            color: textColor,
-            fontSize: textSize,
-            fontFamily: fontFamily,
-            fontWeight: fontWeight,
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: background ?? MagicFactory.colorBrand,
+          foregroundColor: foreground ?? MagicFactory.colorBrand2,
+          padding: padding,
+          shape: RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.circular(radius ?? MagicFactory.buttonRadius),
+            side: strokeWidth == 0
+                ? BorderSide.none
+                : BorderSide(
+                    color: strokeColor ?? MagicFactory.colorStroke,
+                    width: strokeWidth,
+                  ),
           ),
-    );
+        ),
+        child: widthInfinity == true
+            ? Container(
+                width: MediaQuery.of(context).size.width,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: child ?? _defaultText(),
+                ))
+            : (child ?? _defaultText()));
   }
+
+  Widget _defaultText() => MagicText(
+        text ?? "",
+        style: textStyle,
+        color: textColor,
+        fontSize: textSize,
+        fontFamily: fontFamily,
+        fontWeight: fontWeight,
+      );
 }
