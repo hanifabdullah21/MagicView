@@ -98,16 +98,21 @@ MagicText.hint('teks');
 
 Properti [MagicTextStyle] yang dapat digunakan
 
-| Nama           | Tipe            | Keterangan                              |
-|----------------|-----------------|-----------------------------------------|
-| `maxLines`     | `int?`          | Mengatur maksimal baris dalam Widget    |
-| `textAlign`    | `TextAlign?`    | Mengatur perataan teks                  |
-| `textOverflow` | `TextOverflow?` | Mengatur                                |
-| `fontFamily`   | `FontFamily?`   | Mengatur jenis dari font                |
-| `fontWeight`   | `FontWeight?`   | Mengatur ketebalan dari font            |
-| `fontSize`     | `int?`          | Mengatur ukuran dari font               |
-| `fontStyle`    | `FontStyle?`    | Mengatur gaya dari font (normal/miring) |
-| `color`        | `Color?`        | Mengatur warna dari font                |
+| Nama                  | Tipe                   | Keterangan                              |
+|-----------------------|------------------------|-----------------------------------------|
+| `maxLines`            | `int?`                 | Mengatur maksimal baris dalam Widget    |
+| `textAlign`           | `TextAlign?`           | Mengatur perataan teks                  |
+| `textOverflow`        | `TextOverflow?`        | Mengatur                                |
+| `fontFamily`          | `FontFamily?`          | Mengatur jenis dari font                |
+| `fontWeight`          | `FontWeight?`          | Mengatur ketebalan dari font            |
+| `fontSize`            | `int?`                 | Mengatur ukuran dari font               |
+| `fontStyle`           | `FontStyle?`           | Mengatur gaya dari font (normal/miring) |
+| `letterSpacing`       | `double?`              | Mengatur jarak antar huruf              |
+| `color`               | `Color?`               | Mengatur warna dari font                |
+| `decoration`          | `TextDecoration?`      | Mengatur dekorasi                       |
+| `decorationStyle`     | `TextDecorationStyle?` | Mengatur gaya dekorasi                  |
+| `decorationColor`     | `Color?`               | Mengatur warna dekorasi                 |
+| `decorationThickness` | `double?`              | Mengatur ketebalan dekorasi             |
 
 ## MagicTextIcon
 

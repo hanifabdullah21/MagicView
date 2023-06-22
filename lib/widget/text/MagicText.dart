@@ -36,8 +36,23 @@ class MagicText extends StatelessWidget {
   /// [fontStyle] mengatur bentuk font
   final FontStyle? fontStyle;
 
+  /// [letterSpacing] mengatur jarak pada huruf
+  double? letterSpacing;
+
   /// [color] Mengatur warna font
   final Color? color;
+
+  /// [decoration] mengatur dekorasi dari teks
+  final TextDecoration? decoration;
+
+  /// [decorationStyle] mengatur gaya dari dekorasi (dashed, dotted, double atau combine)
+  final TextDecorationStyle? decorationStyle;
+
+  /// [decorationColor] mengatur warna dari dekorasi
+  final Color? decorationColor;
+
+  /// [decorationThickness] mengatur ketebalan dari dekorasi
+  final double? decorationThickness;
 
   /// Default Constructor of MagicText
   MagicText(
@@ -51,17 +66,29 @@ class MagicText extends StatelessWidget {
     this.fontWeight,
     this.fontSize,
     this.fontStyle,
+    this.letterSpacing,
     this.color,
+    this.decoration,
+    this.decorationStyle,
+    this.decorationColor,
+    this.decorationThickness,
   }) {
-    MagicTextAssertion.assertStyleConfiguration(MagicTextType.BODY, style,
-        maxLines: maxLines,
-        textOverflow: textOverflow,
-        textAlign: textAlign,
-        fontFamily: fontFamily,
-        fontWeight: fontWeight,
-        fontSize: fontSize,
-        fontStyle: fontStyle,
-        color: color);
+    MagicTextAssertion.assertStyleConfiguration(
+      MagicTextType.BODY,
+      style,
+      maxLines: maxLines,
+      textOverflow: textOverflow,
+      textAlign: textAlign,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
+      fontSize: fontSize,
+      fontStyle: fontStyle,
+      color: color,
+      decoration: decoration,
+      decorationStyle: decorationStyle,
+      decorationColor: decorationColor,
+      decorationThickness: decorationThickness,
+    );
   }
 
   /// Constructor MagicText yang mengatur untuk teks judul
@@ -77,17 +104,29 @@ class MagicText extends StatelessWidget {
     this.fontWeight = FontWeight.bold,
     this.fontSize = 18,
     this.fontStyle,
+    this.letterSpacing,
     this.color,
+    this.decoration,
+    this.decorationStyle,
+    this.decorationColor,
+    this.decorationThickness,
   }) {
-    MagicTextAssertion.assertStyleConfiguration(MagicTextType.HEAD, style,
-        maxLines: maxLines,
-        textOverflow: textOverflow,
-        textAlign: textAlign,
-        fontFamily: fontFamily,
-        fontWeight: fontWeight,
-        fontSize: fontSize,
-        fontStyle: fontStyle,
-        color: color);
+    MagicTextAssertion.assertStyleConfiguration(
+      MagicTextType.HEAD,
+      style,
+      maxLines: maxLines,
+      textOverflow: textOverflow,
+      textAlign: textAlign,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
+      fontSize: fontSize,
+      fontStyle: fontStyle,
+      color: color,
+      decoration: decoration,
+      decorationStyle: decorationStyle,
+      decorationColor: decorationColor,
+      decorationThickness: decorationThickness,
+    );
   }
 
   /// Constructor MagicText yang mengatur untuk teks subjudul
@@ -103,17 +142,29 @@ class MagicText extends StatelessWidget {
     this.fontWeight = FontWeight.w600,
     this.fontSize = 16,
     this.fontStyle,
+    this.letterSpacing,
     this.color,
+    this.decoration,
+    this.decorationStyle,
+    this.decorationColor,
+    this.decorationThickness,
   }) {
-    MagicTextAssertion.assertStyleConfiguration(MagicTextType.SUBHEAD, style,
-        maxLines: maxLines,
-        textOverflow: textOverflow,
-        textAlign: textAlign,
-        fontFamily: fontFamily,
-        fontWeight: fontWeight,
-        fontSize: fontSize,
-        fontStyle: fontStyle,
-        color: color);
+    MagicTextAssertion.assertStyleConfiguration(
+      MagicTextType.SUBHEAD,
+      style,
+      maxLines: maxLines,
+      textOverflow: textOverflow,
+      textAlign: textAlign,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
+      fontSize: fontSize,
+      fontStyle: fontStyle,
+      color: color,
+      decoration: decoration,
+      decorationStyle: decorationStyle,
+      decorationColor: decorationColor,
+      decorationThickness: decorationThickness,
+    );
   }
 
   /// Constructor MagicText yang mengatur untuk teks hint
@@ -129,17 +180,30 @@ class MagicText extends StatelessWidget {
     this.fontWeight = FontWeight.w400,
     this.fontSize = 12,
     this.fontStyle,
+    this.letterSpacing,
     this.color,
+    this.decoration,
+    this.decorationStyle,
+    this.decorationColor,
+    this.decorationThickness,
   }) {
-    MagicTextAssertion.assertStyleConfiguration(MagicTextType.HINT, style,
-        maxLines: maxLines,
-        textOverflow: textOverflow,
-        textAlign: textAlign,
-        fontFamily: fontFamily,
-        fontWeight: fontWeight,
-        fontSize: fontSize,
-        fontStyle: fontStyle,
-        color: color);
+    MagicTextAssertion.assertStyleConfiguration(
+      MagicTextType.HINT,
+      style,
+      maxLines: maxLines,
+      textOverflow: textOverflow,
+      textAlign: textAlign,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
+      fontSize: fontSize,
+      fontStyle: fontStyle,
+      letterSpacing: letterSpacing,
+      color: color,
+      decoration: decoration,
+      decorationStyle: decorationStyle,
+      decorationColor: decorationColor,
+      decorationThickness: decorationThickness,
+    );
   }
 
   @override
@@ -151,13 +215,16 @@ class MagicText extends StatelessWidget {
       maxLines: defaultTextStyle.maxLines,
       textAlign: defaultTextStyle.textAlign,
       overflow: defaultTextStyle.textOverflow,
-      style: GoogleFonts.getFont(
-        defaultTextStyle.fontFamily?.value ?? "",
-        fontWeight: defaultTextStyle.fontWeight,
-        fontSize: defaultTextStyle.fontSize,
-        fontStyle: defaultTextStyle.fontStyle,
-        color: defaultTextStyle.color,
-      ),
+      style: GoogleFonts.getFont(defaultTextStyle.fontFamily?.value ?? "",
+          fontWeight: defaultTextStyle.fontWeight,
+          fontSize: defaultTextStyle.fontSize,
+          fontStyle: defaultTextStyle.fontStyle,
+          color: defaultTextStyle.color,
+          decoration: defaultTextStyle.decoration,
+          decorationStyle: defaultTextStyle.decorationStyle,
+          decorationColor: defaultTextStyle.decorationColor,
+          decorationThickness: defaultTextStyle.decorationThickness,
+          letterSpacing: defaultTextStyle.letterSpacing),
     );
   }
 
@@ -174,7 +241,16 @@ class MagicText extends StatelessWidget {
       defaultTextStyle.fontWeight = fontWeight ?? defaultTextStyle.fontWeight;
       defaultTextStyle.fontSize = fontSize ?? defaultTextStyle.fontSize;
       defaultTextStyle.fontStyle = fontStyle ?? defaultTextStyle.fontStyle;
+      defaultTextStyle.letterSpacing =
+          letterSpacing ?? defaultTextStyle.letterSpacing;
       defaultTextStyle.color = color ?? defaultTextStyle.color;
+      defaultTextStyle.decoration = decoration ?? defaultTextStyle.decoration;
+      defaultTextStyle.decorationStyle =
+          decorationStyle ?? defaultTextStyle.decorationStyle;
+      defaultTextStyle.decorationThickness =
+          decorationThickness ?? defaultTextStyle.decorationThickness;
+      defaultTextStyle.decorationColor =
+          decorationColor ?? defaultTextStyle.decorationColor;
     }
     return defaultTextStyle;
   }
@@ -186,15 +262,22 @@ enum MagicTextType { BODY, HEAD, SUBHEAD, HINT }
 /// Mengatur 'assert' atau kondisi untuk penggunaan MagicText
 class MagicTextAssertion {
   static void assertStyleConfiguration(
-      MagicTextType type, MagicTextStyle? style,
-      {int? maxLines,
-      TextOverflow? textOverflow,
-      TextAlign? textAlign,
-      FontFamily? fontFamily,
-      FontWeight? fontWeight,
-      double? fontSize,
-      FontStyle? fontStyle,
-      Color? color}) {
+    MagicTextType type,
+    MagicTextStyle? style, {
+    int? maxLines,
+    TextOverflow? textOverflow,
+    TextAlign? textAlign,
+    FontFamily? fontFamily,
+    FontWeight? fontWeight,
+    double? fontSize,
+    FontStyle? fontStyle,
+    double? letterSpacing,
+    Color? color,
+    TextDecoration? decoration,
+    TextDecorationStyle? decorationStyle,
+    Color? decorationColor,
+    double? decorationThickness,
+  }) {
     if (type == MagicTextType.BODY) {
       assert(
           style == null ||
@@ -205,7 +288,12 @@ class MagicTextAssertion {
                   fontWeight == null &&
                   fontSize == null &&
                   fontStyle == null &&
-                  color == null),
+                  letterSpacing == null &&
+                  color == null &&
+                  decoration == null &&
+                  decorationColor == null &&
+                  decorationThickness == null &&
+                  decorationStyle == null),
           'Invalid configuration: If style is not null, all other properties must be null.');
     } else {
       assert(
@@ -215,7 +303,12 @@ class MagicTextAssertion {
                   textAlign == null &&
                   fontFamily == null &&
                   fontStyle == null &&
-                  color == null),
+                  letterSpacing == null &&
+                  color == null &&
+                  decoration == null &&
+                  decorationColor == null &&
+                  decorationThickness == null &&
+                  decorationStyle == null),
           'Invalid configuration: If style is not null, all other properties must be null.');
     }
   }

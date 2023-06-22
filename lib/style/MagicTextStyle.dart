@@ -35,19 +35,40 @@ class MagicTextStyle {
   /// [fontStyle] mengatur bentuk font
   FontStyle? fontStyle;
 
+  /// [letterSpacing] mengatur jarak pada huruf
+  double? letterSpacing;
+
   /// [color] Mengatur warna font
   Color? color;
 
-  MagicTextStyle(
-      {this.maxLines,
-      this.minLines,
-      this.textAlign,
-      this.textOverflow,
-      this.fontFamily,
-      this.fontWeight,
-      this.fontSize,
-      this.fontStyle,
-      this.color});
+  /// [decoration] mengatur dekorasi dari teks
+  TextDecoration? decoration;
+
+  /// [decorationStyle] mengatur gaya dari dekorasi (dashed, dotted, double atau combine)
+  TextDecorationStyle? decorationStyle;
+
+  /// [decorationColor] mengatur warna dari dekorasi
+  Color? decorationColor;
+
+  /// [decorationThickness] mengatur ketebalan dari dekorasi
+  double? decorationThickness;
+
+  MagicTextStyle({
+    this.maxLines,
+    this.minLines,
+    this.textAlign,
+    this.textOverflow,
+    this.fontFamily,
+    this.fontWeight,
+    this.fontSize,
+    this.fontStyle,
+    this.letterSpacing,
+    this.color,
+    this.decoration,
+    this.decorationStyle,
+    this.decorationColor,
+    this.decorationThickness,
+  });
 
   MagicTextStyle copyWith({
     int? maxLines,
@@ -58,7 +79,12 @@ class MagicTextStyle {
     FontWeight? fontWeight,
     double? fontSize,
     FontStyle? fontStyle,
+    double? letterSpacing,
     Color? color,
+    TextDecoration? decoration,
+    TextDecorationStyle? decorationStyle,
+    Color? decorationColor,
+    double? decorationThickness,
   }) {
     return MagicTextStyle(
       maxLines: maxLines ?? this.maxLines,
@@ -69,7 +95,12 @@ class MagicTextStyle {
       fontWeight: fontWeight ?? this.fontWeight,
       fontSize: fontSize ?? this.fontSize,
       fontStyle: fontStyle ?? this.fontStyle,
+      letterSpacing: letterSpacing ?? this.letterSpacing,
       color: color ?? this.color,
+      decoration: decoration ?? this.decoration,
+      decorationStyle: decorationStyle ?? this.decorationStyle,
+      decorationColor: decorationColor ?? this.decorationColor,
+      decorationThickness: decorationThickness ?? this.decorationThickness,
     );
   }
 }
@@ -77,25 +108,41 @@ class MagicTextStyle {
 extension MagicTextStyleExtension on MagicTextStyle? {
   TextStyle toTextStyle() {
     return TextStyle(
-      fontFamily: this?.fontFamily?.value ?? MagicFactory.magicTextStyle.fontFamily?.value ?? "",
+      fontFamily: this?.fontFamily?.value ??
+          MagicFactory.magicTextStyle.fontFamily?.value ??
+          "",
       fontSize: this?.fontSize,
       fontWeight: this?.fontWeight,
       color: this?.color,
       fontStyle: this?.fontStyle,
       overflow: this?.textOverflow,
+      letterSpacing: this?.letterSpacing,
+      decoration: this?.decoration,
+      decorationStyle: this?.decorationStyle,
+      decorationColor: this?.decorationColor,
+      decorationThickness: this?.decorationThickness,
     );
   }
+
   TextStyle toGoogleTextStyle() {
-    if(this==null){
+    if (this == null) {
       debugPrint("NULLLL");
     }
-    return GoogleFonts.getFont(this?.fontFamily?.value ?? MagicFactory.magicTextStyle.fontFamily?.value ?? "",
+    return GoogleFonts.getFont(
+        this?.fontFamily?.value ??
+            MagicFactory.magicTextStyle.fontFamily?.value ??
+            "",
         textStyle: TextStyle(
           fontSize: this?.fontSize,
           fontWeight: this?.fontWeight,
           color: this?.color,
           fontStyle: this?.fontStyle,
           overflow: this?.textOverflow,
+          letterSpacing: this?.letterSpacing,
+          decoration: this?.decoration,
+          decorationStyle: this?.decorationStyle,
+          decorationColor: this?.decorationColor,
+          decorationThickness: this?.decorationThickness,
         ));
   }
 }
