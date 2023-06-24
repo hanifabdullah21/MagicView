@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:example/ExampleModel.dart';
 import 'package:flutter/material.dart';
 import 'package:magic_view/factory.dart';
 import 'package:magic_view/property/font/font.dart';
@@ -35,6 +38,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+TextEditingController controller = TextEditingController(text: "Example");
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -62,9 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       AutoCompleteData<String>("Hanif3", "data"),
                       AutoCompleteData<String>("Hanif3", "data"),
                     ],
-                    onSelected: (selectedData){
-
-                    },
+                    onSelected: (selectedData) {},
                   ),
                 ),
                 Expanded(
@@ -76,9 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       AutoCompleteData<String>("Hanif3", "data"),
                       AutoCompleteData<String>("Hanif3", "data"),
                     ],
-                    onSelected: (selectedData){
-
-                    },
+                    onSelected: (selectedData) {},
                   ),
                 ),
               ],
@@ -92,10 +93,29 @@ class _MyHomePageState extends State<MyHomePage> {
             Divider(),
             textFieldColumn(),
             Divider(),
+            autoComplete()
           ],
         ),
       ),
     );
+  }
+
+  Widget autoComplete() {
+    List<ExampleModel> list = [
+      ExampleModel(id: 1, name: "John", role: "CEO"),
+      ExampleModel(id: 2, name: "Wick", role: "COO"),
+      ExampleModel(id: 3, name: "Erick", role: "Staff"),
+    ];
+
+    //parse your list to List<AutoCompleteData<YourModel>>
+    final listAutoCompleteData =
+        list.map((e) => AutoCompleteData("${e.name} - ${e.role}", e)).toList();
+
+    return MagicAutoComplete<ExampleModel>(
+        controller: controller,
+        initialValue: controller.text,
+        list: listAutoCompleteData,
+        onSelected: (value) {});
   }
 
   Widget textColumn() {
