@@ -58,30 +58,30 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Row(
               children: [
-                Expanded(
-                  flex: 1,
-                  child: MagicAutoComplete<String>(
-                    controller: TextEditingController(),
-                    list: [
-                      AutoCompleteData<String>("Hanif3", "data"),
-                      AutoCompleteData<String>("Hanif3", "data"),
-                      AutoCompleteData<String>("Hanif3", "data"),
-                    ],
-                    onSelected: (selectedData) {},
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: MagicAutoComplete<String>(
-                    controller: TextEditingController(),
-                    list: [
-                      AutoCompleteData<String>("Hanif3", "data"),
-                      AutoCompleteData<String>("Hanif3", "data"),
-                      AutoCompleteData<String>("Hanif3", "data"),
-                    ],
-                    onSelected: (selectedData) {},
-                  ),
-                ),
+                // Expanded(
+                //   flex: 1,
+                //   child: MagicAutoComplete<String>(
+                //     controller: TextEditingController(),
+                //     list: [
+                //       AutoCompleteData<String>("Hanif3", "data"),
+                //       AutoCompleteData<String>("Hanif3", "data"),
+                //       AutoCompleteData<String>("Hanif3", "data"),
+                //     ],
+                //     onSelected: (selectedData) {},
+                //   ),
+                // ),
+                // Expanded(
+                //   flex: 1,
+                //   child: MagicAutoComplete<String>(
+                //     controller: TextEditingController(),
+                //     list: [
+                //       AutoCompleteData<String>("Hanif3", "data"),
+                //       AutoCompleteData<String>("Hanif3", "data"),
+                //       AutoCompleteData<String>("Hanif3", "data"),
+                //     ],
+                //     onSelected: (selectedData) {},
+                //   ),
+                // ),
               ],
             ),
             Divider(),
@@ -93,30 +93,30 @@ class _MyHomePageState extends State<MyHomePage> {
             Divider(),
             textFieldColumn(),
             Divider(),
-            autoComplete()
+            // autoComplete()
           ],
         ),
       ),
     );
   }
 
-  Widget autoComplete() {
-    List<ExampleModel> list = [
-      ExampleModel(id: 1, name: "John", role: "CEO"),
-      ExampleModel(id: 2, name: "Wick", role: "COO"),
-      ExampleModel(id: 3, name: "Erick", role: "Staff"),
-    ];
-
-    //parse your list to List<AutoCompleteData<YourModel>>
-    final listAutoCompleteData =
-        list.map((e) => AutoCompleteData("${e.name} - ${e.role}", e)).toList();
-
-    return MagicAutoComplete<ExampleModel>(
-        controller: controller,
-        initialValue: controller.text,
-        list: listAutoCompleteData,
-        onSelected: (value) {});
-  }
+  // Widget autoComplete() {
+  //   List<ExampleModel> list = [
+  //     ExampleModel(id: 1, name: "John", role: "CEO"),
+  //     ExampleModel(id: 2, name: "Wick", role: "COO"),
+  //     ExampleModel(id: 3, name: "Erick", role: "Staff"),
+  //   ];
+  //
+  //   //parse your list to List<AutoCompleteData<YourModel>>
+  //   final listAutoCompleteData =
+  //       list.map((e) => AutoCompleteData("${e.name} - ${e.role}", e)).toList();
+  //
+  //   return MagicAutoComplete<ExampleModel>(
+  //       controller: controller,
+  //       initialValue: controller.text,
+  //       list: listAutoCompleteData,
+  //       onSelected: (value) {});
+  // }
 
   Widget textColumn() {
     return Column(
