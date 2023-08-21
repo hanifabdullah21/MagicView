@@ -293,57 +293,58 @@ MagicTextField.borderPassword(
 )
 ```
 
-| Nama                     | Tipe                         | Keterangan                                                                                                                                               |
-|--------------------------|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type                     | MagicTextFieldType?          | Tipe yang tersedia pada Widget MagicTextField                                                                                                            |
-| controller               | TextEditingController        | Controller                                                                                                                                               |
-| keyboardType             | TextInputType?               | Mengatur tampilan keyboard                                                                                                                               |
-| textInputAction          | TextInputAction?             | Mengatur bentuk aksi 'enter' di keyboard                                                                                                                 |
-| textStyle                | MagicTextStyle?              | Mengatur gaya teks                                                                                                                                       |
-| readOnly                 | bool                         | Mengatur MagicTextField dapat diedit atau tidak. Secara default bernilai `false`                                                                         |
-| enabled                  | bool?                        | Mengatur MagicTextField dapat diedit atau tidak. Berbeda dengan readOnly, ketika enabled bernilai `true`, MagicTextField akan memasuki mode disabled     |
-| obscureText              | bool                         | Mengatur tampilan teks, akan disembunyikan dan diganti `*` atau tidak. Secara default bernilai `false`                                                   |
-| cursorColor              | Color?                       | Mengatur warna cursor                                                                                                                                    |
-| onEditingComplete        | Function()?                  | Menangani aksi ketika sudah selesai mengedit                                                                                                             |
-| onFieldSubmitted         | Function(String)?            | Menangani aksi ketika sudah selesai mengetik dan menekan `enter`                                                                                         |
-| onChange                 | Function(String)?            | Menangani aksi setiap ada perubahan pengetikan                                                                                                           |
-| validator                | String? Function(String?)?   | Menangani aksi validasi                                                                                                                                  |
-| autoValidateMode         | AutovalidateMode?            | Menangani aksi validasi akan dilakukan kapan                                                                                                             |
-| onTap                    | Function()?                  | Menangani aksi ketika MagicTextField di-Tap                                                                                                              |
-| focusNode                | FocusNode?                   |                                                                                                                                                          |
-| textCapitalization       | TextCapitalization           | Memberikan hint                                                                                                                                          |
-| hint                     | String?                      | Mengatur gaya dari hint                                                                                                                                  |
-| hintStyle                | MagicTextStyle?              | Memberikan label. Jika hint dan label diisi, maka hint akan diabaikan dan label yang akan ditampilkan                                                    |
-| label                    | String?                      | Mengatur gaya dari label                                                                                                                                 |
-| labelStyle               | MagicTextStyle?              | Mengatur Widget kustom untuk label. Jika labelCustom diisi maka label, labelStyle, dan floatingLabelStyle akan diabaikan                                 |
-| labelCustom              | Widget?                      | Mengatur perataan dari label yang mengambang                                                                                                             |
-| floatingLabelAlignment   | FloatingLabelAlignment?      | Mengatur kemunculan label mengambang                                                                                                                     |
-| floatingLabelBehavior    | FloatingLabelBehavior?       | Mengatur gaya dari label mengambang                                                                                                                      |
-| floatingLabelStyle       | MagicTextStyle?              | Mengatur ikon                                                                                                                                            |
-| icon                     | Widget?                      | Mengatur warna dari ikon                                                                                                                                 |
-| iconColor                | Color?                       | Mengatur ikon pada awalan MagicTextField                                                                                                                 |
-| prefixIcon               | Widget?                      | Mengatur warna prefixIcon                                                                                                                                |
-| prefixIconColor          | Color?                       | Mengatur teks pada awalan MagicTextField. Terletak antara prefixIcon dan tempat untuk mengetik.                                                          |
-| prefixText               | String?                      | Mengatur gaya dari prefix                                                                                                                                |
-| prefixTextStyle          | MagicTextStyle?              | Mengatur Widget pada awalan MagicTextField. Terletak antara prefixIcon dan tempat untuk mengetik.                                                        |
-| prefix                   | Widget?                      | Mengatur ikon pada akhiran MagicTextField. Jika type = MagicTextFieldType.PASSWORD atau MagicTextFieldType.BORDER_PASSWORD, suffixIcon akan diabaikan    |
-| suffixIcon               | Widget?                      | Mengatur suffixIcon jika type = MagicTextFieldType.PASSWORD atau MagicTextFieldType.BORDER_PASSWORD dan obscureText = false                              |
-| suffixIconEyeOpen        | Widget?                      | Mengatur suffixIcon jika type = MagicTextFieldType.PASSWORD atau MagicTextFieldType.BORDER_PASSWORD dan obscureText = true                               |
-| suffixIconEyeClose       | Widget?                      | Mengatur warna dari suffixIcon                                                                                                                           |
-| suffixIconColor          | Color?                       | Mengatur teks pada akhiran MagicTextField. Terletak antara suffixIcon dan tempat untuk mengetik.                                                         |
-| suffixText               | String?                      | Mengatur gaya dari suffixText                                                                                                                            |
-| suffixTextStyle          | MagicTextStyle?              | Mengatur Widget pada awalan MagicTextField. Terletak antara suffixIcon dan tempat untuk mengetik.                                                        |
-| suffix                   | Widget?                      | Mengatur garis batas / border pada MagicTextField                                                                                                        |
-| counterText              | String?                      | Mengatur teks counter. Terletak pada kanan bawah MagicTextField                                                                                          |
-| counterStyle             | MagicTextStyle?              | Mengatur gaya teks counterText                                                                                                                           |
-| helperText               | String?                      | mengatur teks helper. Terletak pada kiri bawah MagicTextField                                                                                            |
-| helperStyle              | MagicTextStyle?              | Mengatur gaya teks helperText                                                                                                                            |
-| errorText                | String?                      | Mengatur teks error. Terletak pada kiri bawah MagicTextField. Jika helperText tidak bernilai null akan terganti dengan errorText                         |
-| errorStyle               | MagicTextStyle?              | Mengatur gaya teks errorText                                                                                                                             |
-| fillColor                | Color?                       | Mengatur warna dari MagicTextField. Akan diabaikan jika filled bernilai null atau false                                                                  |
-| filled                   | bool?                        | Mengatur MagicTextField berwarna atau tidak                                                                                                              |
-| padding                  | EdgeInsetsGeometry?          | Mengatur padding                                                                                                                                         |
-| constraints              | BoxConstraints?              | Mengatur ukuran dari MagicTextField                                                                                                                      |
+| Nama                   | Tipe                       | Keterangan                                                                                                                                           |
+|------------------------|----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type                   | MagicTextFieldType?        | Tipe yang tersedia pada Widget MagicTextField                                                                                                        |
+| controller             | TextEditingController      | Controller                                                                                                                                           |
+| keyboardType           | TextInputType?             | Mengatur tampilan keyboard                                                                                                                           |
+| textInputAction        | TextInputAction?           | Mengatur bentuk aksi 'enter' di keyboard                                                                                                             |
+| textStyle              | MagicTextStyle?            | Mengatur gaya teks                                                                                                                                   |
+| readOnly               | bool                       | Mengatur MagicTextField dapat diedit atau tidak. Secara default bernilai `false`                                                                     |
+| enabled                | bool?                      | Mengatur MagicTextField dapat diedit atau tidak. Berbeda dengan readOnly, ketika enabled bernilai `true`, MagicTextField akan memasuki mode disabled |
+| obscureText            | bool                       | Mengatur tampilan teks, akan disembunyikan dan diganti `*` atau tidak. Secara default bernilai `false`                                               |
+| cursorColor            | Color?                     | Mengatur warna cursor                                                                                                                                |
+| onEditingComplete      | Function()?                | Menangani aksi ketika sudah selesai mengedit                                                                                                         |
+| onFieldSubmitted       | Function(String)?          | Menangani aksi ketika sudah selesai mengetik dan menekan `enter`                                                                                     |
+| onChange               | Function(String)?          | Menangani aksi setiap ada perubahan pengetikan                                                                                                       |
+| validator              | String? Function(String?)? | Menangani aksi validasi                                                                                                                              |
+| autoValidateMode       | AutovalidateMode?          | Menangani aksi validasi akan dilakukan kapan                                                                                                         |
+| onTap                  | Function()?                | Menangani aksi ketika MagicTextField di-Tap                                                                                                          |
+| focusNode              | FocusNode?                 |                                                                                                                                                      |
+| textCapitalization     | TextCapitalization         | Memberikan hint                                                                                                                                      |
+| hint                   | String?                    | Mengatur gaya dari hint                                                                                                                              |
+| hintStyle              | MagicTextStyle?            | Memberikan label. Jika hint dan label diisi, maka hint akan diabaikan dan label yang akan ditampilkan                                                |
+| label                  | String?                    | Mengatur gaya dari label                                                                                                                             |
+| labelStyle             | MagicTextStyle?            | Mengatur Widget kustom untuk label. Jika labelCustom diisi maka label, labelStyle, dan floatingLabelStyle akan diabaikan                             |
+| labelCustom            | Widget?                    | Mengatur perataan dari label yang mengambang                                                                                                         |
+| floatingLabelAlignment | FloatingLabelAlignment?    | Mengatur kemunculan label mengambang                                                                                                                 |
+| floatingLabelBehavior  | FloatingLabelBehavior?     | Mengatur gaya dari label mengambang                                                                                                                  |
+| floatingLabelStyle     | MagicTextStyle?            | Mengatur ikon                                                                                                                                        |
+| icon                   | Widget?                    | Mengatur warna dari ikon                                                                                                                             |
+| iconColor              | Color?                     | Mengatur ikon pada awalan MagicTextField                                                                                                             |
+| prefixIcon             | Widget?                    | Mengatur warna prefixIcon                                                                                                                            |
+| prefixIconColor        | Color?                     | Mengatur teks pada awalan MagicTextField. Terletak antara prefixIcon dan tempat untuk mengetik.                                                      |
+| prefixText             | String?                    | Mengatur gaya dari prefix                                                                                                                            |
+| prefixTextStyle        | MagicTextStyle?            | Mengatur Widget pada awalan MagicTextField. Terletak antara prefixIcon dan tempat untuk mengetik.                                                    |
+| prefix                 | Widget?                    | Mengatur ikon pada akhiran MagicTextField. Jika type = MagicTextFieldType.PASSWORD atau MagicTextFieldType.BORDER_PASSWORD, suffixIcon akan diabaikan |
+| suffixIcon             | Widget?                    | Mengatur suffixIcon jika type = MagicTextFieldType.PASSWORD atau MagicTextFieldType.BORDER_PASSWORD dan obscureText = false                          |
+| suffixIconEyeOpen      | Widget?                    | Mengatur suffixIcon jika type = MagicTextFieldType.PASSWORD atau MagicTextFieldType.BORDER_PASSWORD dan obscureText = true                           |
+| suffixIconEyeClose     | Widget?                    | Mengatur warna dari suffixIcon                                                                                                                       |
+| suffixIconColor        | Color?                     | Mengatur teks pada akhiran MagicTextField. Terletak antara suffixIcon dan tempat untuk mengetik.                                                     |
+| suffixText             | String?                    | Mengatur gaya dari suffixText                                                                                                                        |
+| suffixTextStyle        | MagicTextStyle?            | Mengatur Widget pada awalan MagicTextField. Terletak antara suffixIcon dan tempat untuk mengetik.                                                    |
+| suffix                 | Widget?                    | Mengatur garis batas / border pada MagicTextField                                                                                                    |
+| counterText            | String?                    | Mengatur teks counter. Terletak pada kanan bawah MagicTextField                                                                                      |
+| counterStyle           | MagicTextStyle?            | Mengatur gaya teks counterText                                                                                                                       |
+| helperText             | String?                    | mengatur teks helper. Terletak pada kiri bawah MagicTextField                                                                                        |
+| helperStyle            | MagicTextStyle?            | Mengatur gaya teks helperText                                                                                                                        |
+| errorText              | String?                    | Mengatur teks error. Terletak pada kiri bawah MagicTextField. Jika helperText tidak bernilai null akan terganti dengan errorText                     |
+| errorStyle             | MagicTextStyle?            | Mengatur gaya teks errorText                                                                                                                         |
+| fillColor              | Color?                     | Mengatur warna dari MagicTextField. Akan diabaikan jika filled bernilai null atau false                                                              |
+| filled                 | bool?                      | Mengatur MagicTextField berwarna atau tidak                                                                                                          |
+| padding                | EdgeInsetsGeometry?        | Mengatur padding                                                                                                                                     |
+| constraints            | BoxConstraints?            | Mengatur ukuran dari MagicTextField                                                                                                                  |
+| inputFormatter         | List<TextInputFormatter>?  | Mengatu format teks pada MagicTextField                                                                                                              |
 
 
 
