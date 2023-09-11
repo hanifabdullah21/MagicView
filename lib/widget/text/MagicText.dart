@@ -218,7 +218,9 @@ class MagicText extends StatelessWidget {
       overflow: defaultTextStyle.textOverflow,
       style: GoogleFonts.getFont(defaultTextStyle.fontFamily?.value ?? "",
           fontWeight: defaultTextStyle.fontWeight,
-          fontSize: defaultTextStyle.fontSize,
+          fontSize: MagicFactory.useScreenUtil
+              ? (defaultTextStyle.fontSize)?.sp
+              : defaultTextStyle.fontSize,
           fontStyle: defaultTextStyle.fontStyle,
           color: defaultTextStyle.color,
           decoration: defaultTextStyle.decoration,
@@ -240,7 +242,7 @@ class MagicText extends StatelessWidget {
           textOverflow ?? defaultTextStyle.textOverflow;
       defaultTextStyle.fontFamily = fontFamily ?? defaultTextStyle.fontFamily;
       defaultTextStyle.fontWeight = fontWeight ?? defaultTextStyle.fontWeight;
-      defaultTextStyle.fontSize = fontSize ?? defaultTextStyle.fontSize;
+      defaultTextStyle.fontSize = (fontSize ?? defaultTextStyle.fontSize);
       defaultTextStyle.fontStyle = fontStyle ?? defaultTextStyle.fontStyle;
       defaultTextStyle.letterSpacing =
           letterSpacing ?? defaultTextStyle.letterSpacing;

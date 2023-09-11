@@ -4,6 +4,44 @@ Mudah digunakan, mudah dikustomisasi.
 
 Sekumpulan widget yang sudah dikustomisasi untuk dapat lebih memudahkan dalam menggunakannya.
 
+## MagicFactory
+
+Pertama untuk mengatur nilai default untuk setiap Widget, anda dapat mengatur [MagicFactory](#magicfactory) di main.dart
+
+```dart
+MagicFactory.initMagicFactory(
+    colorBrand: Colors.blue,
+    colorBrand2: Colors.pink,
+  );
+```
+
+Properti [MagicFactory] yang dapat digunakan
+
+| Nama                   | Tipe                   | Keterangan                                               |
+|------------------------|------------------------|----------------------------------------------------------|
+| `colorBrand`           | `Color`                | `REQUIRED` Warna utama untuk setiap Widget               |
+| `colorBrand2`          | `Color`                | `REQUIRED` Warna sekondary untuk setiap Widget            |
+| `colorStroke`          | `Color`                | Mengatur warna garis batas                               |
+| `colorDisable`         | `Color`                | Mengatur warna default untuk border ketika disable       |
+| `colorError`           | `Color`                | Mengatur warna untuk error                               |
+| `magicTextStyle`       | `MagicTextStyle`       | Mengatur Style dari MagicText                            |
+| `magicTextFieldBorder` | `MagicTextFieldBorder` | Mengatur border untuk MagicTextField                     |
+| `buttonBorderRadius`   | `double`               | Mengatur radius untuk MagicButton                        |
+| `useScreenUtil`        | `bool`                 | Jika ingin mengimplementasikan ScreenUtil, beri nilai true |
+
+Jika anda ingin mengimplementasikan ScrenUtil maka anda wajib menuliskan kode berikut di main.dart
+
+```dart
+ScreenUtilInit(
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: YourMaterialApp, //Jika anda menggunakan GetX
+      builder: YourMaterialApp, //Jika anda tidak menggunakan GetX
+    )
+```
+
+> Baca selengkapnya di [Flutter ScreenUtil](https://pub.dev/packages/flutter_screenutil)
+
 ## Daftar Widget
 
 - [MagicText](#magictext) - Widget Text
@@ -15,7 +53,7 @@ Sekumpulan widget yang sudah dikustomisasi untuk dapat lebih memudahkan dalam me
 
 Sebuah Kustomisasi Widget Text.
 
-```sh
+```dart
 MagicText(
   "Magic Text Created By Hanif Abdullah",
 )
@@ -24,7 +62,7 @@ MagicText(
 Secara default gaya (style) MagicView diatur dari variabel [MagicFactory.magicTextStyle] dengan
 properti berikut
 
-```sh
+```dart
 static MagicTextStyle magicTextStyle = MagicTextStyle(
     maxLines: null,
     textAlign: null,
@@ -41,7 +79,7 @@ Terdapat 2 cara untuk mengatur gaya (style) untuk widget ini :
 
 1. Mengisi property style, maka Widget akan diatur menyesuaikan seluruh property yang ada didalamnya
 
-```sh
+```dart
 MagicText(
   "Magic Text Created By Hanif Abdullah",
   style: MagicTextStyle(
@@ -60,7 +98,7 @@ MagicText(
 2. Mengisi property selain style, maka Widget akan diatur sesuai property yang diisi saja. Property
    yang kosong akan menyesuaikan dari default MagicTextStyle [MagicFactory.magicTextStyle]
 
-```sh
+```dart
 MagicText(
   "Magic Text Created By Hanif Abdullah",
   fontWeight: FontWeight.normal,
@@ -74,25 +112,25 @@ Terdapat 4 tipe yang disediakan untuk menggunakan MagicText
 
 1. Default
 
-```sh
+```dart
 MagicText("teks");
 ```
 
 2. Head (default ukuran font = 18 dan ketebalan font = FontWeight.bold)
 
-```sh
+```dart
 MagicText.head('teks');
 ```
 
 3. Subhead (default ukuran font = 16 dan ketebalan font = FontWeight.w600)
 
-```sh
+```dart
 MagicText.subhead('teks');
 ```
 
 4. Hint (default ukuran font = 12 dan ketebalan font = FontWeight.w400)
 
-```sh
+```dart
 MagicText.hint('teks');
 ```
 
@@ -122,7 +160,7 @@ Terdapat 3 tipe yang dapat dipakai
 
 1. `asset` Memuat gambar dari aset lokal
 
-```sh
+```dart
 MagicTextIcon.asset(
   "MagicTextIcon",
   asset: "assets/asset-example.png",
@@ -138,7 +176,7 @@ MagicTextIcon.asset(
 
 2. `network` Memuat gambar dari internet
 
-```sh
+```dart
 MagicTextIcon.network(
   "MagicTextIcon",
   url: "https://cdn-icons-png.flaticon.com/128/415/415733.png",
@@ -154,7 +192,7 @@ MagicTextIcon.network(
 
 3. `icon` Memuat gambar dari IconData
 
-```sh
+```dart
 MagicTextIcon.icon(
   "MagicTextIcon",
   icon: Icons.apple,
@@ -187,7 +225,7 @@ Properti yang dapat digunakan
 
 Sebuah Kustomisasi Widget Button.
 
-```sh
+```dart
 MagicButton(
   () {
     // Do Something here
@@ -205,7 +243,7 @@ Namun perlu diperhatikan jika anda memberikan nilai pada `child` maka properti `
 , `textSize`
 , `fontWeight` dan `fontFamily` akan diabaikan.
 
-```sh
+```dart
 MagicButton(
   () {},
   text: "Teks",
@@ -251,7 +289,7 @@ Terdapat 4 tipe yang dapat digunakan :
 
 1. `default` : Pada tipe ini menampilkan [MagicTextField] tanpa border dan suffix icon
 
-```sh
+```dart
 MagicTextField(
   controller,
   hint: "Masukkan nama",
@@ -264,7 +302,7 @@ MagicTextField(
    dibuka. Jika `suffixIconEyeClose` dan `suffixIconEyeOpen` tidak diisi maka akan ada Widget
    default yang mengisi.
 
-```sh
+```dart
 MagicTextField.password(
   controller,
   hint: "Masukkan nama",
@@ -277,7 +315,7 @@ MagicTextField.password(
    diambil dari [MagicFactory.border]. Anda dapat mengkustomisasi border sendiri dengan menambahkan
    properti `border` pada [MagicTextField]
 
-```sh
+```dart
 MagicTextField.border(
   controller,
   hint: "Masukkan nama",
@@ -286,7 +324,7 @@ MagicTextField.border(
 
 4. `borderPassword` : Pada tipe ini menampilkan [MagicTextField] yang merupakan kombinasi antara
    tipe `border` dan tipe `password`
-```sh
+```dart
 MagicTextField.borderPassword(
   controller,
   hint: "Masukkan nama",
