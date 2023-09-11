@@ -1,3 +1,4 @@
+import 'package:example/component/ExampleMagicDropdown.dart';
 import 'package:example/component/ExampleMagicText.dart';
 import 'package:example/component/ExampleMagicTextField.dart';
 import 'package:example/component/ExampleMagicTextWithIcon.dart';
@@ -16,7 +17,6 @@ void main() {
   MagicFactory.initMagicFactory(
     colorBrand: Colors.blue,
     colorBrand2: Colors.pink,
-    colorText: Colors.red,
   );
 
   runApp(const MyApp());
@@ -53,19 +53,23 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            ExampleMagicText(),
-            const Divider(),
-            ExampleMagicTextWithIcon(),
-            const Divider(),
-            ExampleMagicButton(),
-            const Divider(),
-            ExampleMagicTextField(),
-            const Divider(),
-            // autoComplete()
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              ExampleMagicText(),
+              const Divider(),
+              ExampleMagicTextWithIcon(),
+              const Divider(),
+              ExampleMagicButton(),
+              const Divider(),
+              ExampleMagicTextField(),
+              const Divider(),
+              ExampleMagicDropdown()
+              // autoComplete()
+            ],
+          ),
         ),
       ),
     );

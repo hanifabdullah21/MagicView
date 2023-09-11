@@ -48,6 +48,7 @@ ScreenUtilInit(
 - [MagicTextIcon](#magictexticon) - Widget Text dengan Gambar
 - [MagicButton](#magicbutton) - Widget Tombol
 - [MagicTextField](#magictextfield) - Widget TextField
+- [MagicDropdown](#magicdropdown) - Widget Dropdown
 
 ## MagicText
 
@@ -384,6 +385,75 @@ MagicTextField.borderPassword(
 | constraints            | BoxConstraints?            | Mengatur ukuran dari MagicTextField                                                                                                                  |
 | inputFormatter         | List<TextInputFormatter>?  | Mengatu format teks pada MagicTextField                                                                                                              |
 
+## MagicDropDown
+
+Sebuah Kustomisasi Widget Dropdown.
+
+```dart
+MagicDropDown<YourModel>(
+  value: yourValue,
+  items: yourItems,
+  hint: yourHint,
+  itemString: (data) {
+    /// Example : data?.name ?? ""
+    return yourItemString;
+  },
+  onChange: (data) {
+    /// Do Something
+  },
+)
+```
+
+| Nama                  | Type                | Keterangan                                                                                                       |
+|-----------------------|---------------------|------------------------------------------------------------------------------------------------------------------|
+| items                 | List\<T\>            | [REQUIRED] Menagtur isi dropdown |
+| itemString            | String Function(T?) | [REQUIRED] Mengatur teks yang ditampilkan di menu |
+| onChange              | Function(T)?         | [REQUIRED] Fungsi untuk mengatur nilai setelah dipilih dari menu |
+| autoValidateMode      | AutovalidateMode?   | Menagtur jenis validasi |
+| border                | MagicTextFieldBorder? | Mengatur garis batas / border pada [MagicTextField] |
+| counterStyle          | MagicTextStyle?     | Mengatur gaya teks [counterText] |
+| counterText           | String?             | Mengatur teks counter. Terletak pada kanan bawah [MagicTextField] |
+| disableHint           | String?             | Mengatur hint saat [MagicDropDown] disable |
+| disableHintStyle      | MagicTextStyle?     | Mengatur hint style saat [MagicDropDown] disable |
+| errorStyle            | MagicTextStyle?     | Mengatur gaya teks [errorText] |
+| errorText             | String?             | Mengatur teks error. Terletak pada kiri bawah [MagicTextField]. Jika [helperText] tidak bernilai null akan terganti dengan [errorText] |
+| fillColor             | Color?              | Mengatur warna dari [MagicTextField]. Akan diabaikan jika [filled] bernilai null atau false |
+| filled                | bool?               | Mengatur [MagicTextField] berwarna atau tidak |
+| floatingLabelAlignment| FloatingLabelAlignment? | Mengatur perataan dari [label] yang mengambang                                                                |
+| floatingLabelBehavior | FloatingLabelBehavior? | Mengatur kemunculan [label] mengambang                                                                          |
+| floatingLabelStyle    | MagicTextStyle?     | Mengatur gaya dari [label] mengambang                                                                           |
+| helperStyle           | MagicTextStyle?     | Mengatur gaya teks [helperText] |
+| helperText            | String?             | Mengatur teks helper. Terletak pada kiri bawah [MagicTextField] |
+| hint                  | String?             | Memberikan hint                                                                                                  |
+| hintStyle             | MagicTextStyle?     | Mengatur gaya dari [hint]                                                                                        |
+| icon                  | Widget?             | Mengatur ikon                                                                                                   |
+| iconColor             | Color?              | Mengatur warna dari ikon                                                                                        |
+| iconDropdown          | Widget?             | Mengatur ikon dropdown |
+| iconDropdownColorDisable | Color?            | Mengatur warna ikon dropdon saat disable |
+| iconDropdownColorEnable | Color?            | Mengatur warna ikon dropdon saat enable |
+| iconDropdownSize      | double?             | Mengatur ukuran ikon dropdown |
+| itemBuilder           | Widget Function(String itemString, T data)? | Mengatur tampilan dari daftar menu |
+| itemColor             | Color?              | Menagtur warna dari item |
+| itemHeight            | double?             | Mengatur tinggi setiap item |
+| itemString            | String Function(T?) | Mengatur teks yang ditampilkan di menu |
+| label                 | String?             | Memberikan label. Jika [hint] dan [label] diisi, maka [hint] akan diabaikan dan [label] yang akan ditampilkan   |
+| labelCustom           | Widget?             | Mengatur Widget kustom untuk label. Jika [labelCustom] diisi maka [label], [labelStyle], dan [floatingLabelStyle] akan diabaikan |
+| labelStyle            | MagicTextStyle?     | Mengatur gaya dari [label]                                                                                      |
+| maxMenuHeight         | double?             | Mengatur tinggi maksimal menu |
+| prefix                | Widget?             | Mengatur Widget pada awalan [MagicTextField]. Terletak antara [prefixIcon] dan tempat untuk mengetik. [prefix] akan muncul jika [prefixText] bernilai null dan [MagicTextField] dalam status fokus |
+| prefixIcon            | Widget?             | Mengatur ikon pada awalan [MagicTextField]                                                                     |
+| prefixIconColor       | Color?              | Mengatur warna [prefixIcon]                                                                                     |
+| prefixText            | String?             | Mengatur teks pada awalan [MagicTextField]. Terletak antara [prefixIcon] dan tempat untuk mengetik. [prefixText] akan muncul jika [prefix] bernilai null dan [MagicTextField] dalam status fokus |
+| prefixTextStyle       | MagicTextStyle?     | Mengatur gaya dari [prefixText]                                                                                   |
+| suffix                | Widget?             | Mengatur Widget pada awalan [MagicTextField]. Terletak antara [suffixIcon] dan tempat untuk mengetik. [suffix] akan muncul jika [suffixText] bernilai null dan [MagicTextField] dalam status fokus |
+| suffixIcon            | Widget?             | Mengatur ikon pada akhiran [MagicTextField] |
+| suffixIconColor       | Color?              | Mengatur warna dari [suffixIcon] |
+| suffixIconEyeClose    | Widget?             | Mengatur [suffixIcon] jika [type] = [MagicTextFieldType.PASSWORD] atau [MagicTextFieldType.BORDER_PASSWORD] dan [obscureText] = true |
+| suffixIconEyeOpen     | Widget?             | Mengatur [suffixIcon] jika [type] = [MagicTextFieldType.PASSWORD] atau [MagicTextFieldType.BORDER_PASSWORD] dan [obscureText] = false |
+| suffixText            | String?             | Mengatur teks pada akhiran [MagicTextField]. Terletak antara [suffixIcon] dan tempat untuk mengetik. [suffixText] akan muncul jika [suffix] bernilai null dan [MagicTextField] dalam status fokus |
+| suffixTextStyle       | MagicTextStyle?     | Mengatur gaya dari [suffixText] |
+| value                 | T?                  | Mengatur nilai |
+| validator             | String? Function(String? text, T? data)? | Mengatur validasi dropdown |
 
 
 
