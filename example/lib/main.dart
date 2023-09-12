@@ -1,3 +1,4 @@
+import 'package:example/component/ExampleMagicAutoComplete.dart';
 import 'package:example/component/ExampleMagicDropdown.dart';
 import 'package:example/component/ExampleMagicText.dart';
 import 'package:example/component/ExampleMagicTextField.dart';
@@ -60,13 +61,15 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               ExampleMagicText(),
               const Divider(),
+              ExampleMagicAutoComplete(),
+              const Divider(),
               ExampleMagicTextWithIcon(),
               const Divider(),
               ExampleMagicButton(),
               const Divider(),
               ExampleMagicTextField(),
               const Divider(),
-              ExampleMagicDropdown()
+              ExampleMagicDropdown(),
               // autoComplete()
             ],
           ),

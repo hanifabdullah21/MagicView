@@ -49,6 +49,7 @@ ScreenUtilInit(
 - [MagicButton](#magicbutton) - Widget Tombol
 - [MagicTextField](#magictextfield) - Widget TextField
 - [MagicDropdown](#magicdropdown) - Widget Dropdown
+- [MagicAutoComplete](#magicautocomplete) - Widget AutoComplete
 
 ## MagicText
 
@@ -455,6 +456,36 @@ MagicDropDown<YourModel>(
 | value                 | T?                  | Mengatur nilai |
 | validator             | String? Function(String? text, T? data)? | Mengatur validasi dropdown |
 
+## MagicAutoComplete
+
+Sebuah Kustomisasi Widget Autocomplete.
+
+```dart
+MagicAutoComplete<ExampleModel>(
+  controller: controller,
+  list: items.map((e) => AutoCompleteData(e.name, e)).toList(),
+  onSelected: (value) {
+    setState(() {
+      selectedData = value;
+      controller.text = selectedData?.option ?? "";
+    });
+  })
+```
+
+| Nama                        | Type                                                       | Keterangan                                                                                                    |
+|-----------------------------|------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| controller                  | TextEditingController                                      | [REQUIRED] Controller untuk fieldViewBuilder                                                                  |
+| list                        | List<AutoCompleteData<T>>                                 | [REQUIRED] Pilihan yang ditampilkan                                                                           |
+| onSelected                  | Function(AutoCompleteData<T>)?                            | [REQUIRED ] Aksi ketika pilihan tersebut dipilih                                                               |
+| displayStringForOption      | String Function(AutoCompleteData<T>)?                     | Menampilkan String pilihan yang dipilih                                                                      |
+| fieldViewBuilder            | Widget Function(BuildContext, TextEditingController, FocusNode, VoidCallback)? | Mengatur kustomisasi dari `fieldViewBuilder`. Jika [fieldViewBuilder] != null maka [textFieldStyle] akan diabaikan. Perlu diperhatikan jika melakukan kustomisasi, harap parameter ini disesuaikan ke dalam kustom dari tampilan anda. |
+| maxHeightOption             | double?                                                    | Mengatur tinggi maksimal dari tampilan pilihan                                                               |
+| maxWidthOption              | double?                                                    | Mengatur lebar maksimal dari tampilan pilihan (dikurangi 40) karena margin horizontal 20. Default MediaQuery.of(context).size.width                                          |
+| optionHighlightTextStyle    | MagicTextStyle?                                            | Mengatur gaya teks dari highlight default `optionsViewBuilder`. Jika [optionHighlightTextStyle] berisi null maka gaya teks akan disesuaikan secara default                        |
+| optionTextStyle             | MagicTextStyle?                                            | Mengatur gaya teks dari default `optionsViewBuilder`. Jika [optionTextStyle] berisi null maka gaya teks akan disesuaikan secara default                                      |
+| optionsBuilder              | FutureOr<Iterable<AutoCompleteData<T>>> Function(TextEditingValue)? | Kustomisasi Options Builder. Secara default jika teks di `fieldViewBuilder` kosong maka akan menampilkan seluruh [list]. Jika ada isinya maka [list] akan difilter berdasarkan [AutoCompleteData.option] yang mengandung teks di `fieldViewBuilder` |
+| optionsViewBuilder          | Widget Function(BuildContext, Function(AutoCompleteData<T>), Iterable<AutoCompleteData<T>>)? | Mengatur kustomisasi tampilan pilihan. Jika [optionsViewBuilder] != null maka [maxWidthOption] dan [maxHeightOption] diabaikan                                     |
+| textFieldStyle              | MagicTextFieldStyle?                                       | Mengatur gaya dari `fieldViewBuilder`. [MagicTextFieldStyle] berisi seluruh gaya yang dapat diterapkan pada [MagicTextField]                                                |
 
 
 
