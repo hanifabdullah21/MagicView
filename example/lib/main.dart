@@ -1,11 +1,15 @@
 import 'package:example/component/ExampleMagicAutoComplete.dart';
 import 'package:example/component/ExampleMagicDropdown.dart';
+import 'package:example/component/ExampleMagicLayout.dart';
 import 'package:example/component/ExampleMagicText.dart';
 import 'package:example/component/ExampleMagicTextField.dart';
 import 'package:example/component/ExampleMagicTextWithIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:magic_view/factory.dart';
 import 'package:magic_view/magic_view.dart';
+import 'package:magic_view/widget/button/MagicButton.dart';
+import 'package:magic_view/widget/layout/MagicLayout.dart';
+import 'package:magic_view/widget/text/MagicText.dart';
 
 import 'component/ExampleMagicButton.dart';
 
@@ -16,7 +20,7 @@ void main() {
   /// contoh jika anda ingin mengganti Font Family :
   /// MagicFactory.fontFamily = FontFamily.openSans;
   MagicFactory.initMagicFactory(
-    colorBrand: Colors.blue,
+    colorBrand: Colors.green,
     colorBrand2: Colors.pink,
   );
 
@@ -70,6 +74,40 @@ class _MyHomePageState extends State<MyHomePage> {
               ExampleMagicTextField(),
               const Divider(),
               ExampleMagicDropdown(),
+              const Divider(),
+              Row(
+                children: [
+                  MagicButton(() {
+                    showMagicDialog(context,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.add,
+                              size: 400,
+                            ),
+                            MagicText("Halo"),
+                          ],
+                        ));
+                  }),
+                  MagicButton(() {
+                    showMagicAlertDialog(
+                      context,
+                      title: "Perhatian",
+                      content: "Terjadi Kesalahan.",
+                      iconType: EnumDialogIconType.failed,
+                      barrierDismissable: true,
+                      textPrimary: "Ulangi",
+                      onPrimary: (){
+
+                      },
+                      background: Colors.blue,
+                    );
+                  }),
+                ],
+              ),
+              const Divider(),
+              ExampleMagicLayout(),
               // autoComplete()
             ],
           ),
