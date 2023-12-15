@@ -6,22 +6,30 @@ import '../button/MagicButton.dart';
 import '../dialog/MagicDialogFunction.dart';
 import '../text/MagicText.dart';
 
-showMagicMonthPicker(BuildContext context,
-    {DateTime? initialDate,
-    String? formatMonth,
-    required Function(DateTime, String, String) onSelected}) {
+showMagicMonthPicker(
+  BuildContext context, {
+  required Function(DateTime, String?, String?) onSelected,
+  DateTime? initialDate,
+  String? formatMonth,
+  bool onlyMonth = false,
+  bool onlyYear = false,
+}) {
   showMagicDialog(context,
       child: _MonthPicker(
         initialDate: initialDate ?? DateTime.now(),
         formatMonth: formatMonth = "MMM",
         onSelected: onSelected,
+        onlyMonth: onlyMonth,
+        onlyYear: onlyYear,
       ));
 }
 
 class _MonthPicker extends StatefulWidget {
   DateTime initialDate = DateTime.now();
   String formatMonth;
-  Function(DateTime, String, String) onSelected;
+  bool onlyMonth;
+  bool onlyYear;
+  Function(DateTime, String?, String?) onSelected;
 
   List<int> months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   late int monthFocused;
@@ -36,6 +44,8 @@ class _MonthPicker extends StatefulWidget {
     required this.initialDate,
     required this.onSelected,
     this.formatMonth = "MMM",
+    this.onlyMonth = false,
+    this.onlyYear = false,
   }) {
     monthController = PageController(
       viewportFraction: 0.35,
@@ -73,9 +83,9 @@ class _MonthPickerState extends State<_MonthPicker> {
           height: 150,
           child: Row(
             children: [
-              Expanded(
-                  flex: 1,
-                  child: PageView.builder(
+              Flexible(
+                  flex: widget.onlyYear ? 0 : 1,
+                  child: widget.onlyYear ? Container() : PageView.builder(
                       itemCount: 12,
                       onPageChanged: (page) {
                         setState(() {
@@ -98,9 +108,9 @@ class _MonthPickerState extends State<_MonthPicker> {
                       scrollDirection: Axis.vertical,
                       allowImplicitScrolling: true,
                       controller: widget.monthController)),
-              Expanded(
-                  flex: 1,
-                  child: PageView.builder(
+              Flexible(
+                  flex: widget.onlyMonth ? 0 : 1,
+                  child: widget.onlyMonth ? Container() : PageView.builder(
                       itemCount: widget.year.length,
                       onPageChanged: (page) {
                         setState(() {
@@ -141,12 +151,11 @@ class _MonthPickerState extends State<_MonthPicker> {
               () {
                 Navigator.pop(context);
 
-                DateTime newDateTime = DateTime(widget.year[widget.yearFocused],
-                    widget.months[widget.monthFocused]);
-                String monthString =
-                    DateFormat(widget.formatMonth, "id").format(newDateTime);
-                String yearString =
-                    DateFormat("yyyy", "id").format(newDateTime);
+                int year = widget.onlyMonth ? 0001 : widget.year[widget.yearFocused];
+                int month = widget.onlyYear ? 01 : widget.months[widget.monthFocused];
+                DateTime newDateTime = DateTime(year, month);
+                String? monthString = widget.onlyYear ? null : DateFormat(widget.formatMonth, "id").format(newDateTime);
+                String? yearString = widget.onlyMonth ? null : DateFormat("yyyy", "id").format(newDateTime);
                 widget.onSelected(newDateTime, monthString, yearString);
               },
               text: "Pilih",
