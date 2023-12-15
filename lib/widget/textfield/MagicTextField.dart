@@ -406,11 +406,11 @@ class MagicTextField extends StatefulWidget {
 
 class _MagicTextFieldState extends State<MagicTextField> {
   final Widget _defaultSuffixIconEyeOpen = Image.asset(
-    "assets/eye.png",
+    "packages/magic_view/assets/eye.png",
     color: MagicFactory.colorBrand,
   );
   final Widget _defaultSuffixIconEyeClose = Image.asset(
-    "assets/eye_off.png",
+    "packages/magic_view/assets/eye_off.png",
     color: MagicFactory.colorBrand,
   );
 

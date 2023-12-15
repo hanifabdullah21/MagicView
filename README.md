@@ -17,17 +17,25 @@ MagicFactory.initMagicFactory(
 
 Properti [MagicFactory] yang dapat digunakan
 
-| Nama                   | Tipe                   | Keterangan                                               |
-|------------------------|------------------------|----------------------------------------------------------|
-| `colorBrand`           | `Color`                | `REQUIRED` Warna utama untuk setiap Widget               |
-| `colorBrand2`          | `Color`                | `REQUIRED` Warna sekondary untuk setiap Widget            |
-| `colorStroke`          | `Color`                | Mengatur warna garis batas                               |
-| `colorDisable`         | `Color`                | Mengatur warna default untuk border ketika disable       |
-| `colorError`           | `Color`                | Mengatur warna untuk error                               |
-| `magicTextStyle`       | `MagicTextStyle`       | Mengatur Style dari MagicText                            |
-| `magicTextFieldBorder` | `MagicTextFieldBorder` | Mengatur border untuk MagicTextField                     |
-| `buttonBorderRadius`   | `double`               | Mengatur radius untuk MagicButton                        |
-| `useScreenUtil`        | `bool`                 | Jika ingin mengimplementasikan ScreenUtil, beri nilai true |
+| Nama                        | Tipe                  | Keterangan                                                                                                            |
+|-----------------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------|
+| colorBrand                  | Color                 | [REQUIRED] Mengatur warna utama                                                                                       |
+| colorBrand2                 | Color                 | [REQUIRED] Mengatur warna sekunder                                                                                    |
+| colorStroke                 | Color?                | Mengatur warna border, digunakan untuk warna border di MagicButton                                                     |
+| colorText                   | Color?                | Mengatur warna teks untuk MagicText                                                                                   |
+| colorDisable                | Color?                | Mengatur warna disable, seperti digunakan untuk MagicButton disable                                                    |
+| colorError                  | Color?                | Mengatur warna error                                                                                                  |
+| fontFamily                  | FontFamily?           | Mengatur Font                                                                                                         |
+| magicTextStyle              | MagicTextStyle?       | Mengatur style default untuk MagicText                                                                                |
+| magicTextFieldBorder        | MagicTextFieldBorder? | Mengatur border untuk MagicTextField                                                                                 |
+| buttonBorderRadius          | double?               | Mengatur radius untuk MagicButton atau MagicTextField                                                                 |
+| useScreenUtil               | bool                  | Mengatur penggunaan ScreenUtil. Jika bernilai true maka fontSize akan dikonversi ke .sp                                |
+| limitSmallMediumScreen      | double?               | Mengatur batas. width < limit = Small dan width > limit = Medium                                                      |
+| limitMediumLargeScreen      | double?               | Mengatur batas. width < limit = Medium dan width > limit = Large                                                       |
+| iconSuccess                 | Widget?               | Mengatur icon Success dialog ketika EnumIconDialogType.success                                                        |
+| iconFailed                  | Widget?               | Mengatur icon Success dialog ketika EnumIconDialogType.failed                                                         |
+| iconWarning                 | Widget?               | Mengatur icon Success dialog ketika EnumIconDialogType.warning                                                        |
+
 
 Jika anda ingin mengimplementasikan ScrenUtil maka anda wajib menuliskan kode berikut di main.dart
 
@@ -50,6 +58,8 @@ ScreenUtilInit(
 - [MagicTextField](#magictextfield) - Widget TextField
 - [MagicDropdown](#magicdropdown) - Widget Dropdown
 - [MagicAutoComplete](#magicautocomplete) - Widget AutoComplete
+- [MagicDialog](#magicdialog) - Widget Dialog
+- [MagicLayout](#magiclayout) - Widget Mengatur Responsive Layout
 
 ## MagicText
 
@@ -486,6 +496,110 @@ MagicAutoComplete<ExampleModel>(
 | optionsBuilder              | FutureOr<Iterable<AutoCompleteData<T>>> Function(TextEditingValue)? | Kustomisasi Options Builder. Secara default jika teks di `fieldViewBuilder` kosong maka akan menampilkan seluruh [list]. Jika ada isinya maka [list] akan difilter berdasarkan [AutoCompleteData.option] yang mengandung teks di `fieldViewBuilder` |
 | optionsViewBuilder          | Widget Function(BuildContext, Function(AutoCompleteData<T>), Iterable<AutoCompleteData<T>>)? | Mengatur kustomisasi tampilan pilihan. Jika [optionsViewBuilder] != null maka [maxWidthOption] dan [maxHeightOption] diabaikan                                     |
 | textFieldStyle              | MagicTextFieldStyle?                                       | Mengatur gaya dari `fieldViewBuilder`. [MagicTextFieldStyle] berisi seluruh gaya yang dapat diterapkan pada [MagicTextField]                                                |
+
+## MagicDialog
+
+Sebuah widget untuk menampilkan dialog.
+
+Secara mudah anda dapat menampilkan dialog yang sesuai dengan keinginan anda dengan menggunakan [MagicDialog].
+
+```dart
+showMagicDialog(
+  context,
+  child: YOUR_WIDGET 
+);
+```
+
+| Nama               | Tipe         | Keterangan                                                                                                 |
+|--------------------|--------------|------------------------------------------------------------------------------------------------------------|
+| context            | BuildContext | [REQUIRED]                                                            |
+| child              | Widget       | [REQUIRED] Widget konten atau isi dari dialog                                                              |
+| barrierDismissable | bool         | Digunakan untuk menutup dialog jika menekan di bagian area luar dialog. Secara default bernilai true    |
+| background         | Color?       | Warna background dari dialog                                                                              |
+| maxHeight          | double?      | Mengatur maksimal tinggi dari dialog. Secara default bernilai sesuai dengan tinggi perangkat - 100      |
+| cornerRadius       | double?      | Mengatur radius sudut dialog                                                                             |
+| elevation          | double?      | Mengatur elevation                                                                                       |
+| padding            | double?      | Mengatur padding                                                                                         |
+
+Selain fungsi ```showMagicDialog``` anda dapat menggunakan fungsi ```showMagicAlertDialog``` yang akan menampilkan dialog informatif yang berisi ikon, judul, kontan, tombol utama dan tombol sekunder.
+
+```dart
+showMagicAlertDialog(
+  context,
+  title: "YOUR TITLE",
+  content: "YOUR KONTEN.",
+  iconType: EnumDialogIconType.failed,
+  barrierDismissable: true,
+  textPrimary: "Ulangi",
+  onPrimary: (){
+      
+  },
+  background: Colors.black,
+);
+```
+
+| Nama                  | Tipe                     | Keterangan                                                                                                                  |
+|-----------------------|--------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| content               | String?                  | [REQUIRED] Teks untuk isi dialog                                                                                           |
+| contentStyle          | MagicTextStyle?          | Style Teks untuk konten                                                                                                    |
+| iconType              | EnumDialogIconType?      | Mode icon. Diambil dari EnumDialogIconType yang berisi none, success, failed, warning, custom. Secara default bernilai EnumDialogIconType.none |
+| icon                  | Widget?                  | Jika iconType bernilai EnumDialogIconType.custom, anda dapat mengisi icon disini                                           |
+| title                 | String?                  | Teks untuk judul                                                                                                           |
+| titleStyle            | MagicTextStyle?          | Style teks untuk judul                                                                                                     |
+| barrierDismissable    | bool                     | Digunakan untuk menutup dialog jika menekan di bagian area luar dialog. Secara default bernilai true                       |
+| textPrimary           | String?                  | Teks untuk tombol primary                                                                                                  |
+| onPrimary             | Function()?              | Aksi untuk tombol primary                                                                                                  |
+| colorPrimary          | Color?                   | Warna untuk tombol primary                                                                                                 |
+| textColorPrimary      | Color?                   | Warna teks untuk tombol primary                                                                                            |
+| textSizePrimary       | double?                  | Ukuran teks untuk tombol primary                                                                                            |
+| textSecondary         | String?                  | Teks untuk tombol sekunder                                                                                                 |
+| onSecondary           | Function()?              | Aksi untuk tombol sekunder                                                                                                 |
+| colorSecondary        | Color?                   | Warna tombol sekunder                                                                                                      |
+| textColorSecondary    | Color?                   | Warna teks untuk tombol sekunder                                                                                           |
+| textSizeSecondary     | double?                  | Ukuran teks untuk tombol sekunder                                                                                           |
+| background            | Color?                   | Warna background dialog                                                                                                     |
+| borderColor           | Color?                   | Warna batas dialog                                                                                                         |
+| borderWidth           | double                   | Ketebalan batas dialog. Secara default bernilai 2                                                                           |
+
+## MagicLayout
+
+Mengatur Widget Reponsive Layout
+
+```dart
+MagicLayout(
+      largeScreen: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 5, childAspectRatio: 5.0),
+        itemBuilder: (context, index) {
+          return widgets[index];
+        },
+        shrinkWrap: true,
+        itemCount: widgets.length,
+      ),
+      mediumScreen: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3, childAspectRatio: 5.0),
+        itemBuilder: (context, index) {
+          return widgets[index];
+        },
+        shrinkWrap: true,
+        itemCount: widgets.length,
+      ),
+      smallScreen: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 1, childAspectRatio: 5.0),
+        itemBuilder: (context, index) {
+          return widgets[index];
+        },
+        shrinkWrap: true,
+        itemCount: widgets.length,
+      ),
+    );
+```
+
+
+
+
 
 
 

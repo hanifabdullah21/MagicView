@@ -2,23 +2,61 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:magic_view/property/font/font.dart';
 import 'package:magic_view/style/MagicTextFieldBorder.dart';
 import 'package:magic_view/style/MagicTextStyle.dart';
 
 class MagicFactory {
-  static initMagicFactory(
-      {required Color colorBrand,
-      required Color colorBrand2,
-      Color? colorStroke,
-      Color? colorText,
-      Color? colorDisable,
-      Color? colorError,
-      FontFamily? fontFamily,
-      MagicTextStyle? magicTextStyle,
-      MagicTextFieldBorder? magicTextFieldBorder,
-      double? buttonBorderRadius,
-      bool useScreenUtil = false}) {
+  static initMagicFactory({
+    /// [REQUIRED] Mengatur warna utama
+    required Color colorBrand,
+
+    /// [REQUIRED] Mengatur warna sekunder
+    required Color colorBrand2,
+
+    /// Mengatur warna border, digunakan untuk warna border di MagicButton
+    Color? colorStroke,
+
+    /// Mengatur warna teks untuk MagicText
+    Color? colorText,
+
+    /// Mengatur warna disable, seperti digunakan untuk MagicButton disable
+    Color? colorDisable,
+
+    /// Mengatur warna error
+    Color? colorError,
+
+    /// Mengatur Font
+    FontFamily? fontFamily,
+
+    /// Mengatur style default untuk MagicText
+    MagicTextStyle? magicTextStyle,
+
+    /// Mengatur border untuk MagicTextField
+    MagicTextFieldBorder? magicTextFieldBorder,
+
+    /// Mengatur radius untuk MagicButton atau MagicTextField
+    double? buttonBorderRadius,
+
+    /// Mengatur penggunaan ScreenUtil. Jika bernilai true maka fontSize akan dikonversi ke .sp
+    bool useScreenUtil = false,
+
+    /// Mengatur batas. width < limit = Small dan width > limit = Medium
+    double? limitSmallMediumScreen,
+
+    /// Mengatur batas. width < limit = Medium dan width > limit = Large
+    double? limitMediumLargeScreen,
+
+    /// Mengatur icon Success dialog ketika EnumIconDialogType.success
+    Widget? iconSuccess,
+
+    /// Mengatur icon Success dialog ketika EnumIconDialogType.failed
+    Widget? iconFailed,
+
+    /// Mengatur icon Success dialog ketika EnumIconDialogType.warning
+    Widget? iconWarning,
+  }) {
     MagicFactory.colorBrand = colorBrand;
     MagicFactory.colorBrand2 = colorBrand2;
     if (colorStroke != null) MagicFactory.colorStroke = colorStroke;
@@ -27,7 +65,6 @@ class MagicFactory {
     if (colorError != null) MagicFactory.colorError = colorError;
     if (fontFamily != null) MagicFactory.fontFamily = fontFamily;
     if (magicTextStyle != null) MagicFactory.magicTextStyle = magicTextStyle;
-    if (magicTextStyle != null) MagicFactory.magicTextStyle = magicTextStyle;
     if (magicTextFieldBorder != null) {
       MagicFactory.border = magicTextFieldBorder;
     }
@@ -35,6 +72,15 @@ class MagicFactory {
       MagicFactory.buttonRadius = buttonBorderRadius;
     }
     MagicFactory.useScreenUtil = useScreenUtil;
+    if (limitSmallMediumScreen != null) {
+      MagicFactory.limitSmallMediumScreen = limitSmallMediumScreen;
+    }
+    if (limitMediumLargeScreen != null) {
+      MagicFactory.limitMediumLargeScreen = limitMediumLargeScreen;
+    }
+    if (iconSuccess != null) MagicFactory.iconSuccess = iconSuccess;
+    if (iconFailed != null) MagicFactory.iconFailed = iconFailed;
+    if (iconWarning != null) MagicFactory.iconWarning = iconWarning;
   }
 
   /// Mengatur warna
@@ -98,6 +144,30 @@ class MagicFactory {
         sideColor: colorError,
         sideWidth: 2,
         radiusAll: buttonRadius),
+  );
+
+  /// Layout Builder
+  static double limitSmallMediumScreen = 800;
+  static double limitMediumLargeScreen = 1200;
+
+  /// Dialog
+  static Widget iconSuccess = Image.asset(
+    "assets/checked.png",
+    width: 48,
+    height: 48,
+    package: 'magic_view',
+  );
+  static Widget iconFailed = Image.asset(
+    "assets/cancel.png",
+    width: 48,
+    height: 48,
+    package: 'magic_view',
+  );
+  static Widget iconWarning = Image.asset(
+    "assets/warning.png",
+    width: 48,
+    height: 48,
+    package: 'magic_view',
   );
 
   static initScreen(BuildContext context) {
