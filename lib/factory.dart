@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:magic_view/property/font/font.dart';
 import 'package:magic_view/style/MagicTextFieldBorder.dart';
 import 'package:magic_view/style/MagicTextStyle.dart';

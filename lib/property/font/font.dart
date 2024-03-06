@@ -25,8 +25,8 @@ class FontFamily {
       FontFamily._(6, 'Noto Sans', GoogleFonts.notoSansTextTheme());
   static final poppins =
       FontFamily._(7, 'Poppins', GoogleFonts.poppinsTextTheme());
-  static final sourceSansPro =
-      FontFamily._(8, 'Source Sans Pro', GoogleFonts.sourceSansProTextTheme());
+  static final sourceSans3 =
+      FontFamily._(8, 'Source Sans 3', GoogleFonts.sourceSans3TextTheme());
   static final ubuntu =
       FontFamily._(9, 'Ubuntu', GoogleFonts.ubuntuTextTheme());
   static final merriweather =
