@@ -218,7 +218,9 @@ class MagicText extends StatelessWidget {
       maxLines: defaultTextStyle.maxLines,
       textAlign: defaultTextStyle.textAlign,
       overflow: defaultTextStyle.textOverflow,
-      style: GoogleFonts.getFont(defaultTextStyle.fontFamily?.value ?? "Lato",
+      style: GoogleFonts.getFont(
+          MagicFactory.fontName ??
+              (defaultTextStyle.fontFamily?.value ?? "Lato"),
           fontWeight: defaultTextStyle.fontWeight,
           fontSize: MagicFactory.useScreenUtil
               ? (defaultTextStyle.fontSize)?.sp
