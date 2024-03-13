@@ -1,4 +1,5 @@
-import 'package:flutter/foundation.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:magic_view/factory.dart';
 
@@ -11,15 +12,14 @@ class MagicDialog extends StatefulWidget {
   double? padding;
   double? cornerRadius;
 
-  MagicDialog({
-    super.key,
-    required this.child,
-    this.maxHeight,
-    this.background,
-    this.elevation,
-    this.padding,
-    this.cornerRadius
-  });
+  MagicDialog(
+      {super.key,
+      required this.child,
+      this.maxHeight,
+      this.background,
+      this.elevation,
+      this.padding,
+      this.cornerRadius});
 
   @override
   State<StatefulWidget> createState() => MagicDialogState();

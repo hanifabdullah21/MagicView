@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:magic_view/property/font/font.dart';
 import 'package:magic_view/style/MagicTextFieldBorder.dart';
 import 'package:magic_view/style/MagicTextStyle.dart';
@@ -29,6 +26,9 @@ class MagicFactory {
 
     /// Mengatur Font
     FontFamily? fontFamily,
+
+    /// Mengatur nama font yang ada di google
+    String? fontName,
 
     /// Mengatur style default untuk MagicText
     MagicTextStyle? magicTextStyle,
@@ -64,6 +64,7 @@ class MagicFactory {
     if (colorDisable != null) MagicFactory.colorDisable = colorDisable;
     if (colorError != null) MagicFactory.colorError = colorError;
     if (fontFamily != null) MagicFactory.fontFamily = fontFamily;
+    if (fontName != null) MagicFactory.fontName = fontName;
     if (magicTextStyle != null) MagicFactory.magicTextStyle = magicTextStyle;
     if (magicTextFieldBorder != null) {
       MagicFactory.border = magicTextFieldBorder;
@@ -95,6 +96,9 @@ class MagicFactory {
 
   /// Mengatur font yang akan digunakan
   static FontFamily fontFamily = FontFamily.lato;
+
+  /// Mengatur nama font yang ada di google
+  static String? fontName;
 
   /// Mengatur gaya teks [default]
   static MagicTextStyle magicTextStyle = MagicTextStyle(

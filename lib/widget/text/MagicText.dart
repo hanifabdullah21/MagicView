@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -216,7 +218,9 @@ class MagicText extends StatelessWidget {
       maxLines: defaultTextStyle.maxLines,
       textAlign: defaultTextStyle.textAlign,
       overflow: defaultTextStyle.textOverflow,
-      style: GoogleFonts.getFont(defaultTextStyle.fontFamily?.value ?? "",
+      style: GoogleFonts.getFont(
+          MagicFactory.fontName ??
+              (defaultTextStyle.fontFamily?.value ?? "Lato"),
           fontWeight: defaultTextStyle.fontWeight,
           fontSize: MagicFactory.useScreenUtil
               ? (defaultTextStyle.fontSize)?.sp
