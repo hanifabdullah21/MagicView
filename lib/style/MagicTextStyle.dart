@@ -23,6 +23,9 @@ class MagicTextStyle {
   /// [textOverflow] Mengatur luapan teks
   TextOverflow? textOverflow;
 
+  /// [softWrap] mengatur text soft warp
+  bool? softWrap;
+
   /// [fontFamily] Mengatur jenis font
   FontFamily? fontFamily;
 
@@ -58,6 +61,7 @@ class MagicTextStyle {
     this.minLines,
     this.textAlign,
     this.textOverflow,
+    this.softWrap,
     this.fontFamily,
     this.fontWeight,
     this.fontSize,
@@ -75,6 +79,7 @@ class MagicTextStyle {
     int? minLines,
     TextAlign? textAlign,
     TextOverflow? textOverflow,
+    bool? softWrap,
     FontFamily? fontFamily,
     FontWeight? fontWeight,
     double? fontSize,
@@ -91,6 +96,7 @@ class MagicTextStyle {
       minLines: maxLines ?? this.minLines,
       textAlign: textAlign ?? this.textAlign,
       textOverflow: textOverflow ?? this.textOverflow,
+      softWrap: softWrap ?? this.softWrap,
       fontFamily: fontFamily ?? this.fontFamily,
       fontWeight: fontWeight ?? this.fontWeight,
       fontSize: fontSize ?? this.fontSize,
