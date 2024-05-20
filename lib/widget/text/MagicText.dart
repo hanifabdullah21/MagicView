@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,6 +26,9 @@ class MagicText extends StatelessWidget {
 
   /// [textOverflow] Mengatur luapan teks
   final TextOverflow? textOverflow;
+
+  /// [softWrap] mengatur text soft warp
+  final bool? softWrap;
 
   /// [fontFamily] Mengatur jenis font
   final FontFamily? fontFamily;
@@ -62,6 +67,7 @@ class MagicText extends StatelessWidget {
     this.style,
     this.maxLines,
     this.textOverflow,
+    this.softWrap,
     this.textAlign,
     this.fontFamily,
     this.fontWeight,
@@ -79,6 +85,7 @@ class MagicText extends StatelessWidget {
       style,
       maxLines: maxLines,
       textOverflow: textOverflow,
+      softWrap: softWrap,
       textAlign: textAlign,
       fontFamily: fontFamily,
       fontWeight: fontWeight,
@@ -100,6 +107,7 @@ class MagicText extends StatelessWidget {
     this.style,
     this.maxLines,
     this.textOverflow,
+    this.softWrap,
     this.textAlign,
     this.fontFamily,
     this.fontWeight = FontWeight.bold,
@@ -117,6 +125,7 @@ class MagicText extends StatelessWidget {
       style,
       maxLines: maxLines,
       textOverflow: textOverflow,
+      softWrap: softWrap,
       textAlign: textAlign,
       fontFamily: fontFamily,
       fontWeight: fontWeight,
@@ -138,6 +147,7 @@ class MagicText extends StatelessWidget {
     this.style,
     this.maxLines,
     this.textOverflow,
+    this.softWrap,
     this.textAlign,
     this.fontFamily,
     this.fontWeight = FontWeight.w600,
@@ -155,6 +165,7 @@ class MagicText extends StatelessWidget {
       style,
       maxLines: maxLines,
       textOverflow: textOverflow,
+      softWrap: softWrap,
       textAlign: textAlign,
       fontFamily: fontFamily,
       fontWeight: fontWeight,
@@ -176,6 +187,7 @@ class MagicText extends StatelessWidget {
     this.style,
     this.maxLines,
     this.textOverflow,
+    this.softWrap,
     this.textAlign,
     this.fontFamily,
     this.fontWeight = FontWeight.w400,
@@ -193,6 +205,7 @@ class MagicText extends StatelessWidget {
       style,
       maxLines: maxLines,
       textOverflow: textOverflow,
+      softWrap: softWrap,
       textAlign: textAlign,
       fontFamily: fontFamily,
       fontWeight: fontWeight,
@@ -216,7 +229,10 @@ class MagicText extends StatelessWidget {
       maxLines: defaultTextStyle.maxLines,
       textAlign: defaultTextStyle.textAlign,
       overflow: defaultTextStyle.textOverflow,
-      style: GoogleFonts.getFont(defaultTextStyle.fontFamily?.value ?? "",
+      softWrap: defaultTextStyle.softWrap,
+      style: GoogleFonts.getFont(
+          MagicFactory.fontName ??
+              (defaultTextStyle.fontFamily?.value ?? "Lato"),
           fontWeight: defaultTextStyle.fontWeight,
           fontSize: MagicFactory.useScreenUtil
               ? (defaultTextStyle.fontSize)?.sp
@@ -240,6 +256,7 @@ class MagicText extends StatelessWidget {
       defaultTextStyle.textAlign = textAlign ?? defaultTextStyle.textAlign;
       defaultTextStyle.textOverflow =
           textOverflow ?? defaultTextStyle.textOverflow;
+      defaultTextStyle.softWrap = softWrap ?? defaultTextStyle.softWrap;
       defaultTextStyle.fontFamily = fontFamily ?? defaultTextStyle.fontFamily;
       defaultTextStyle.fontWeight = fontWeight ?? defaultTextStyle.fontWeight;
       defaultTextStyle.fontSize = (fontSize ?? defaultTextStyle.fontSize);
@@ -269,6 +286,7 @@ class MagicTextAssertion {
     MagicTextStyle? style, {
     int? maxLines,
     TextOverflow? textOverflow,
+    bool? softWrap,
     TextAlign? textAlign,
     FontFamily? fontFamily,
     FontWeight? fontWeight,
@@ -286,6 +304,7 @@ class MagicTextAssertion {
           style == null ||
               (maxLines == null &&
                   textOverflow == null &&
+                  softWrap == null &&
                   textAlign == null &&
                   fontFamily == null &&
                   fontWeight == null &&
@@ -303,6 +322,7 @@ class MagicTextAssertion {
           style == null ||
               (maxLines == null &&
                   textOverflow == null &&
+                  softWrap == null &&
                   textAlign == null &&
                   fontFamily == null &&
                   fontStyle == null &&
