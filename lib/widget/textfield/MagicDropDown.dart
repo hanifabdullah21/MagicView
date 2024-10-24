@@ -223,9 +223,18 @@ class MagicDropDown<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Ensure that items generate unique "key" values
     List<Map<String, dynamic>> list = items
         .map((e) => <String, dynamic>{"key": itemString(e), "value": e})
         .toList();
+
+    // Ensure the 'value' matches one of the 'key' values in the list
+    String? selectedValue;
+    if (value != null) {
+      selectedValue = list.any((item) => item["key"] == itemString(value))
+          ? itemString(value)
+          : null; // Set to null if no match found
+    }
 
     return DropdownButtonFormField<String>(
       decoration: InputDecoration(
@@ -277,13 +286,17 @@ class MagicDropDown<T> extends StatelessWidget {
       ),
       items: list
           .map((e) => DropdownMenuItem<String>(
-              value: e["key"],
-              child: itemBuilder != null
-                  ? itemBuilder!(e["key"], e["value"])
-                  : MagicText(e["key"])))
+                value: e["key"],
+                child: itemBuilder != null
+                    ? itemBuilder!(e["key"], e["value"])
+                    : MagicText(e["key"]),
+              ))
           .toList(),
       style: MagicFactory.magicTextStyle.toGoogleTextStyle(),
-      value: value != null ? itemString(value) : null,
+
+      // Ensure 'selectedValue' is used instead of 'itemString(value)'
+      value: selectedValue,
+
       onChanged: onChange != null
           ? (String? value) {
               Map<String, dynamic> result =
@@ -302,7 +315,6 @@ class MagicDropDown<T> extends StatelessWidget {
               } catch (e) {
                 result = null;
               }
-
               return validator!(value, result);
             }
           : null,
