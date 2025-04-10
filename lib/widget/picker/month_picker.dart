@@ -19,7 +19,7 @@ showMagicMonthPicker(
   showMagicDialog(context,
       child: _MonthPicker(
         initialDate: initialDate ?? DateTime.now(),
-        formatMonth: formatMonth = "MMM",
+        formatMonth: formatMonth ?? "MMM",
         onSelected: onSelected,
         onlyMonth: onlyMonth,
         onlyYear: onlyYear,
