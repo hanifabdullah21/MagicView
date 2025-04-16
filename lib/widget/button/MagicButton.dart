@@ -39,7 +39,15 @@ class MagicButton extends StatelessWidget {
   /// Mengatur warna dasar dari tombol
   final Color? background;
 
+  /// Mengatur warna dasar dari tombol ketika ditekan
+  final Color? backgroundPressed;
+
+  /// Mengatur warna dasar dari tombol ketika disable
+  final Color? backgroundDisable;
+
   /// Mengatur warna dari tombol. Akan terlihat jika tombol di-hover atau ditekan
+  ///
+  /// catatan: kemungkinan tidak akan terlihat apapun karena child bawaan kompleks
   final Color? foreground;
 
   /// Mengatur warna garis dari tombol. Jika [strokeWidth] bernilai lebih dari 0
@@ -60,6 +68,10 @@ class MagicButton extends StatelessWidget {
   /// Mengatur lebar option menjadi memenuhi layar atau tidak
   final bool? widthInfinity;
 
+  final double? height;
+
+  final bool? isDisable;
+
   const MagicButton(
     this.onPressed, {
     super.key,
@@ -70,6 +82,8 @@ class MagicButton extends StatelessWidget {
     this.textSize,
     this.fontWeight,
     this.background,
+    this.backgroundPressed,
+    this.backgroundDisable,
     this.foreground,
     this.strokeColor,
     this.strokeWidth = 0,
@@ -77,35 +91,63 @@ class MagicButton extends StatelessWidget {
     this.padding,
     this.child,
     this.widthInfinity,
+    this.height,
+    this.isDisable = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: background ?? MagicFactory.colorBrand,
-          foregroundColor: foreground ?? MagicFactory.colorBrand2,
-          padding: padding,
-          shape: RoundedRectangleBorder(
-            borderRadius:
-                BorderRadius.circular(radius ?? MagicFactory.buttonRadius),
-            side: strokeWidth == 0
-                ? BorderSide.none
-                : BorderSide(
-                    color: strokeColor ?? MagicFactory.colorStroke,
-                    width: strokeWidth,
-                  ),
+        onPressed: isDisable == true ? null : onPressed,
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            Color color = background ?? MagicFactory.colorBrand;
+            if (states.contains(WidgetState.pressed)) {
+              return backgroundPressed ??
+                  color.withValues(
+                    green: color.g * 0.8,
+                    red: color.r * 0.8,
+                    blue: color.b * 0.8,
+                    alpha: color.a,
+                  );
+            }
+            if (states.contains(WidgetState.disabled)) {
+              return backgroundDisable ?? MagicFactory.colorDisable;
+            }
+            return color;
+          }),
+          overlayColor: WidgetStateProperty.all(Colors.transparent),
+          foregroundColor: WidgetStateProperty.all(
+            foreground,
           ),
+          padding: padding != null ? WidgetStateProperty.all(padding) : null,
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                radius ?? MagicFactory.buttonRadius,
+              ),
+              side: strokeWidth == 0
+                  ? BorderSide.none
+                  : BorderSide(
+                      color: strokeColor ?? MagicFactory.colorStroke,
+                      width: strokeWidth,
+                    ),
+            ),
+          ),
+          minimumSize: WidgetStateProperty.resolveWith((value) {
+            if (widthInfinity == true && height != null) {
+              return Size(double.infinity, height!);
+            }
+            if (widthInfinity == true && height == null) {
+              return Size(double.infinity, 48);
+            }
+            if (widthInfinity == false && height != null) {
+              return Size(0, height!);
+            }
+            return null;
+          }),
         ),
-        child: widthInfinity == true
-            ? Container(
-                width: MediaQuery.of(context).size.width,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: child ?? _defaultText(),
-                ))
-            : (child ?? _defaultText()));
+        child: (child ?? _defaultText()));
   }
 
   Widget _defaultText() => MagicText(
