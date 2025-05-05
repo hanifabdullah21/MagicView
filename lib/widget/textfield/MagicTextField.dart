@@ -476,6 +476,7 @@ class _MagicTextFieldState extends State<MagicTextField> {
         contentPadding: widget.padding,
         constraints: widget.constraints,
         focusColor: Colors.transparent,
+        errorMaxLines: widget.errorStyle?.maxLines,
       ),
       keyboardType: widget.keyboardType,
       textInputAction: widget.textInputAction,
