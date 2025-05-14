@@ -116,11 +116,9 @@ class MagicTextIcon extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: verticalAlignment,
       mainAxisAlignment: horizontalAlignment,
+      spacing: spaces,
       children: [
         side == MagicTextIconSide.left ? getIconWidget() : getTextWidget(),
-        SizedBox(
-          width: spaces,
-        ),
         side == MagicTextIconSide.left ? getTextWidget() : getIconWidget(),
       ],
     );
@@ -156,9 +154,12 @@ class MagicTextIcon extends StatelessWidget {
   }
 
   Widget getTextWidget() {
-    return MagicText(
-      text,
-      style: textStyle ?? MagicFactory.magicTextStyle,
+    return Expanded(
+      flex: 1,
+      child: MagicText(
+        text,
+        style: textStyle ?? MagicFactory.magicTextStyle,
+      ),
     );
   }
 }
