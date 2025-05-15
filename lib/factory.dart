@@ -95,7 +95,8 @@ class MagicFactory {
   static bool useScreenUtil = false;
 
   /// Mengatur font yang akan digunakan
-  static FontFamily fontFamily = FontFamily.lato;
+  static FontFamily fontFamily = FontFamily.jakartaSans;
+  static String fontFamilyCustom = "";
 
   /// Mengatur nama font yang ada di google
   static String? fontName;

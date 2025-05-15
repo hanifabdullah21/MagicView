@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:magic_view/factory.dart';
 import 'package:magic_view/style/MagicTextFieldBorder.dart';
 import 'package:magic_view/style/MagicTextStyle.dart';
+import 'package:magic_view/widget/text/MagicText.dart';
 
 enum MagicTextFieldType { DEFAULT, PASSWORD, BORDER, BORDER_PASSWORD }
 
@@ -457,8 +458,8 @@ class _MagicTextFieldState extends State<MagicTextField> {
         suffixStyle: widget.suffixTextStyle?.toGoogleTextStyle(),
         counterText: widget.counterText,
         counterStyle: widget.counterStyle?.toGoogleTextStyle(),
-        helperText: widget.helperText,
-        helperStyle: widget.helperStyle?.toGoogleTextStyle(),
+        // helperText: widget.helperText,
+        // helperStyle: widget.helperStyle?.toGoogleTextStyle(),
         errorText: widget.errorText,
         errorStyle: widget.errorStyle?.toGoogleTextStyle(),
         fillColor: widget.fillColor,
@@ -476,6 +477,9 @@ class _MagicTextFieldState extends State<MagicTextField> {
         contentPadding: widget.padding,
         constraints: widget.constraints,
         focusColor: Colors.transparent,
+        errorMaxLines: widget.errorStyle?.maxLines,
+        helperMaxLines: widget.helperStyle?.maxLines,
+        helper: widget.helperText==null?null:MagicText(widget.helperText??"", style: widget.helperStyle,),
       ),
       keyboardType: widget.keyboardType,
       textInputAction: widget.textInputAction,

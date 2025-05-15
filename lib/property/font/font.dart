@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:magic_view/factory.dart';
 
 class FontFamily {
   FontFamily._(this.index, this.value, this.textTheme);
@@ -48,4 +49,8 @@ class FontFamily {
       FontFamily._(18, 'Inconsolata', GoogleFonts.inconsolataTextTheme());
   static final quicksand =
       FontFamily._(19, 'Quicksand', GoogleFonts.quicksandTextTheme());
+  static final jakartaSans = FontFamily._(
+      20, 'Plus Jakarta Sans', GoogleFonts.plusJakartaSansTextTheme());
+  static final customFont = FontFamily._(
+      22, MagicFactory.fontFamilyCustom, GoogleFonts.metrophobicTextTheme());
 }
