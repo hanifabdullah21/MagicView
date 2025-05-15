@@ -60,6 +60,10 @@ class MagicTextIcon extends StatelessWidget {
   /// maka variabel ini akan dipakai untuk mengatur ukuran gambar
   double? size;
 
+  TextAlign? textAlign;
+
+  bool? isExpand;
+
   /// Default Constructor of MagicText dengan Icon dari asset
   MagicTextIcon.asset(
     this.text, {
@@ -72,6 +76,8 @@ class MagicTextIcon extends StatelessWidget {
     this.color,
     this.verticalAlignment = CrossAxisAlignment.center,
     this.horizontalAlignment = MainAxisAlignment.start,
+    this.textAlign,
+        this.isExpand,
     Key? key,
   }) : super(key: key) {
     type = MagicTextIconType.asset;
@@ -89,6 +95,8 @@ class MagicTextIcon extends StatelessWidget {
     this.spaces = 8,
     this.verticalAlignment = CrossAxisAlignment.center,
     this.horizontalAlignment = MainAxisAlignment.start,
+    this.textAlign,
+        this.isExpand,
     Key? key,
   }) : super(key: key) {
     type = MagicTextIconType.network;
@@ -105,6 +113,8 @@ class MagicTextIcon extends StatelessWidget {
     this.spaces = 8,
     this.verticalAlignment = CrossAxisAlignment.center,
     this.horizontalAlignment = MainAxisAlignment.start,
+    this.textAlign,
+        this.isExpand,
     Key? key,
   }) : super(key: key) {
     type = MagicTextIconType.icon;
@@ -155,10 +165,11 @@ class MagicTextIcon extends StatelessWidget {
 
   Widget getTextWidget() {
     return Expanded(
-      flex: 1,
+      flex: isExpand == true ? 1 : 0,
       child: MagicText(
         text,
-        style: textStyle ?? MagicFactory.magicTextStyle,
+        style: (textStyle ?? MagicFactory.magicTextStyle)
+          ..textAlign = textAlign ?? TextAlign.center,
       ),
     );
   }
