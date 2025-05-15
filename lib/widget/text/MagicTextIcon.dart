@@ -1,13 +1,14 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:magic_view/factory.dart';
 import 'package:magic_view/style/MagicTextStyle.dart';
 import 'package:magic_view/widget/text/MagicText.dart';
 
 /// Sebuah enum yang menyediakan tipe yang berfungsi untuk menentukan gambar
 /// akan dimuat dari mana (aset lokal atau internet atau icon)
-enum MagicTextIconType { asset, network, icon }
+enum MagicTextIconType { asset, network, icon, svg }
 
 /// Sebuah enum yang menyediakan posisi gambar akan ditempatkan disebelah mana
 enum MagicTextIconSide { left, right }
@@ -83,6 +84,23 @@ class MagicTextIcon extends StatelessWidget {
     type = MagicTextIconType.asset;
   }
 
+  /// Default Constructor of MagicText dengan SVG dari asset
+  MagicTextIcon.svg(
+    this.text, {
+    required this.asset,
+    this.textStyle,
+    this.height,
+    this.width,
+    this.side = MagicTextIconSide.left,
+    this.spaces = 8,
+    this.color,
+    this.verticalAlignment = CrossAxisAlignment.center,
+    this.horizontalAlignment = MainAxisAlignment.start,
+    Key? key,
+  }) : super(key: key) {
+    type = MagicTextIconType.svg;
+  }
+
   /// Default Constructor of MagicText dengan Icon dari internet
   MagicTextIcon.network(
     this.text, {
@@ -102,7 +120,7 @@ class MagicTextIcon extends StatelessWidget {
     type = MagicTextIconType.network;
   }
 
-  /// Default Constructor of MagicText dengan Icon dari internet
+  /// Default Constructor of MagicText dengan Icon dari icon Data
   MagicTextIcon.icon(
     this.text, {
     required this.icon,
@@ -156,6 +174,13 @@ class MagicTextIcon extends StatelessWidget {
         return Icon(
           icon,
           size: size,
+          color: color,
+        );
+      case MagicTextIconType.svg:
+        return SvgPicture.asset(
+          "$asset",
+          width: width,
+          height: height,
           color: color,
         );
       default:
