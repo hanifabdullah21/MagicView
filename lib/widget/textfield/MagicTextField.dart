@@ -183,6 +183,8 @@ class MagicTextField extends StatefulWidget {
   /// Input Formatter
   final List<TextInputFormatter>? inputFormatter;
 
+  final int? maxLength;
+
   MagicTextField(
     this.controller, {
     super.key,
@@ -233,6 +235,7 @@ class MagicTextField extends StatefulWidget {
     this.padding,
     this.constraints,
     this.inputFormatter,
+    this.maxLength,
   }) {
     type = MagicTextFieldType.DEFAULT;
   }
@@ -288,6 +291,7 @@ class MagicTextField extends StatefulWidget {
     this.padding,
     this.constraints,
     this.inputFormatter,
+    this.maxLength,
   }) {
     type = MagicTextFieldType.PASSWORD;
   }
@@ -342,6 +346,7 @@ class MagicTextField extends StatefulWidget {
     this.padding,
     this.constraints,
     this.inputFormatter,
+    this.maxLength,
   }) {
     type = MagicTextFieldType.DEFAULT;
     border = border ?? MagicFactory.border;
@@ -398,6 +403,7 @@ class MagicTextField extends StatefulWidget {
     this.padding,
     this.constraints,
     this.inputFormatter,
+    this.maxLength,
   }) {
     type = MagicTextFieldType.BORDER_PASSWORD;
     border = border ?? MagicFactory.border;
@@ -479,7 +485,12 @@ class _MagicTextFieldState extends State<MagicTextField> {
         focusColor: Colors.transparent,
         errorMaxLines: widget.errorStyle?.maxLines,
         helperMaxLines: widget.helperStyle?.maxLines,
-        helper: widget.helperText==null?null:MagicText(widget.helperText??"", style: widget.helperStyle,),
+        helper: widget.helperText == null
+            ? null
+            : MagicText(
+                widget.helperText ?? "",
+                style: widget.helperStyle,
+              ),
       ),
       keyboardType: widget.keyboardType,
       textInputAction: widget.textInputAction,
@@ -505,6 +516,7 @@ class _MagicTextFieldState extends State<MagicTextField> {
       onChanged: widget.onChange,
       textCapitalization: widget.textCapitalization,
       inputFormatters: widget.inputFormatter ?? [],
+      maxLength: widget.maxLength,
     );
   }
 
