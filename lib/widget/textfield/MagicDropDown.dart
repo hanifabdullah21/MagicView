@@ -314,7 +314,7 @@ class MagicDropDown<T> extends StatelessWidget {
         "$hint",
         style: hintStyle,
       ),
-      disabledHint: MagicText(
+      disabledHint: disableHint==null ? null : MagicText(
         "$disableHint",
         style: disableHintStyle,
       ),
