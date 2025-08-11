@@ -168,9 +168,10 @@ showMagicAlertDialog(
                         ),
                         MagicText(
                           content ?? "",
-                          style: contentStyle,
-                          maxLines: 4,
-                          textOverflow: TextOverflow.ellipsis,
+                          style: contentStyle?.copyWith(
+                            maxLines: 4,
+                            textOverflow: TextOverflow.ellipsis,
+                          ),
                         ),
                         const SizedBox(
                           height: 16,
