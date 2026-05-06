@@ -111,118 +111,135 @@ showMagicAlertDialog(
     context: context,
     builder: (context) {
       double width = 420;
+      double minHeight = (width * 186) / 286; // tinggi minimal
+      double maxHeight = MediaQuery.of(context).size.height - width; // tinggi maksimal
+
       return MagicDialog(
         background: Colors.transparent,
         elevation: 0,
         child: SizedBox(
           width: width,
-          child: Stack(
-            children: [
-              Container(
-                width: width,
-                height: (width * 186) / 286,
-                decoration: BoxDecoration(
-                    border: Border.all(
-                      color: borderColor ?? MagicFactory.colorBrand,
-                      width: borderWidth,
-                    ),
-                    borderRadius: BorderRadius.circular(40)),
-              ),
-              RotationTransition(
-                turns: const AlwaysStoppedAnimation(355 / 360),
-                child: Container(
-                  width: width,
-                  height: (width * 186) / 286,
-                  decoration: ShapeDecoration(
-                    color: background ?? Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: minHeight,
+              maxHeight: maxHeight,
+            ),
+            child: IntrinsicHeight(
+              child: Stack(
+                fit: StackFit.passthrough,
+                children: [
+                  Positioned.fill(
+                    child: Container(
+                      // width: width,
+                      // height: (width * 186) / 286,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: borderColor ?? MagicFactory.colorBrand,
+                            width: borderWidth,
+                          ),
+                          borderRadius: BorderRadius.circular(40)),
                     ),
                   ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(24),
-                width: width,
-                height: (width * 186) / 286,
-                child: Material(
-                    color: background ?? Colors.white,
-                    child: Center(
-                        child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Visibility(
-                            visible: iconType != EnumDialogIconType.none,
-                            child: icon ?? SizedBox()),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Visibility(
-                            visible: title != null,
-                            child: MagicText.head(
-                              title ?? "",
-                              style: titleStyle,
-                            )),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        MagicText(
-                          content ?? "",
-                          style: contentStyle?.copyWith(
-                            maxLines: 4,
-                            textOverflow: TextOverflow.ellipsis,
+                  Positioned.fill(
+                    child: RotationTransition(
+                      turns: const AlwaysStoppedAnimation(355 / 360),
+                      child: Container(
+                        // width: width,
+                        // height: (width * 186) / 286,
+                        decoration: ShapeDecoration(
+                          color: background ?? Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40),
                           ),
                         ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Row(
-                          children: [
-                            Visibility(
-                                visible: textSecondary != null &&
-                                    onSecondary != null,
-                                child: Expanded(
-                                    flex: 1,
-                                    child: MagicButton(
-                                      onSecondary,
-                                      text: "$textSecondary",
-                                      textColor: textColorSecondary,
-                                      strokeColor: colorSecondary ??
-                                          MagicFactory.colorBrand2,
-                                      strokeWidth: 2,
-                                      textSize: textSizeSecondary,
-                                      background: Colors.white,
-                                    ))),
-                            Visibility(
-                                visible: (textPrimary != null &&
-                                        onPrimary != null) &&
-                                    (textSecondary != null &&
-                                        onSecondary != null),
-                                child: const SizedBox(
-                                  width: 16,
-                                )),
-                            Visibility(
-                                visible:
-                                textPrimary != null && onPrimary != null,
-                                child: Expanded(
-                                    flex: 1,
-                                    child: MagicButton(
-                                      onPrimary,
-                                      text: "$textPrimary",
-                                      textColor: textColorPrimary,
-                                      textSize: textSizePrimary,
-                                      background: colorPrimary ??
-                                          MagicFactory.colorBrand,
-                                    ))),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                      ],
-                    ))),
+                      ),
+                    ),
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    child: Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Visibility(
+                              visible: iconType != EnumDialogIconType.none,
+                              child: icon ?? SizedBox()),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Visibility(
+                              visible: title != null,
+                              child: MagicText.head(
+                                title ?? "",
+                                style: titleStyle,
+                              )),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Flexible(
+                            child: SingleChildScrollView(
+                              child: MagicText(
+                                content ?? "",
+                                style: contentStyle?.copyWith(
+                                  maxLines: 4,
+                                  textOverflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Row(
+                            children: [
+                              Visibility(
+                                  visible: textSecondary != null &&
+                                      onSecondary != null,
+                                  child: Expanded(
+                                      flex: 1,
+                                      child: MagicButton(
+                                        onSecondary,
+                                        text: "$textSecondary",
+                                        textColor: textColorSecondary,
+                                        strokeColor: colorSecondary ??
+                                            MagicFactory.colorBrand2,
+                                        strokeWidth: 2,
+                                        textSize: textSizeSecondary,
+                                        background: Colors.white,
+                                      ))),
+                              Visibility(
+                                  visible: (textPrimary != null &&
+                                          onPrimary != null) &&
+                                      (textSecondary != null &&
+                                          onSecondary != null),
+                                  child: const SizedBox(
+                                    width: 16,
+                                  )),
+                              Visibility(
+                                  visible:
+                                  textPrimary != null && onPrimary != null,
+                                  child: Expanded(
+                                      flex: 1,
+                                      child: MagicButton(
+                                        onPrimary,
+                                        text: "$textPrimary",
+                                        textColor: textColorPrimary,
+                                        textSize: textSizePrimary,
+                                        background: colorPrimary ??
+                                            MagicFactory.colorBrand,
+                                      ))),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 4,
+                                                    ),
+                        ],
+                      ),
+                    )),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       );
