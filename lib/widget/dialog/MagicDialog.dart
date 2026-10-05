@@ -12,6 +12,9 @@ class MagicDialog extends StatefulWidget {
   double? padding;
   double? cornerRadius;
 
+  /// Jika false, child tidak dibungkus [SingleChildScrollView].
+  final bool scrollable;
+
   MagicDialog(
       {super.key,
       required this.child,
@@ -19,7 +22,8 @@ class MagicDialog extends StatefulWidget {
       this.background,
       this.elevation,
       this.padding,
-      this.cornerRadius});
+      this.cornerRadius,
+      this.scrollable = true});
 
   @override
   State<StatefulWidget> createState() => MagicDialogState();
@@ -40,6 +44,7 @@ class MagicDialogState extends State<MagicDialog> {
       }
 
       double deviceHeight = MediaQuery.of(context).size.height;
+      final dialogMaxHeight = widget.maxHeight ?? deviceHeight - 100;
 
       return Center(
         child: Container(
@@ -47,7 +52,7 @@ class MagicDialogState extends State<MagicDialog> {
           constraints: BoxConstraints(
               maxWidth: width,
               minHeight: 10,
-              maxHeight: widget.maxHeight ?? deviceHeight - 100),
+              maxHeight: dialogMaxHeight),
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(widget.cornerRadius ?? 16),
@@ -57,16 +62,27 @@ class MagicDialogState extends State<MagicDialog> {
             child: ScrollConfiguration(
               behavior:
                   ScrollConfiguration.of(context).copyWith(scrollbars: false),
-              child: SingleChildScrollView(
-                child: Wrap(
-                  children: [
-                    Padding(
+              child: widget.scrollable
+                  ? SingleChildScrollView(
+                      child: Wrap(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(widget.padding ?? 16.0),
+                            child: widget.child,
+                          ),
+                        ],
+                      ),
+                    )
+                  : Padding(
                       padding: EdgeInsets.all(widget.padding ?? 16.0),
-                      child: widget.child,
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxHeight: dialogMaxHeight -
+                              (widget.padding ?? 16.0) * 2,
+                        ),
+                        child: widget.child,
+                      ),
                     ),
-                  ],
-                ),
-              ),
             ),
           ),
         ),

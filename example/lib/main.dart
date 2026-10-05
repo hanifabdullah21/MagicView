@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       background: Colors.blue,
                     );
-                  }),
+                  }, text: "Show Magic Alert Dialog",),
                 ],
               ),
               const Divider(),
