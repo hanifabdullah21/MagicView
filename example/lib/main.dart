@@ -7,10 +7,7 @@ import 'package:example/component/ExampleMagicTextWithIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:magic_view/factory.dart';
 import 'package:magic_view/magic_view.dart';
-import 'package:magic_view/widget/button/MagicButton.dart';
-import 'package:magic_view/widget/layout/MagicLayout.dart';
-import 'package:magic_view/widget/text/MagicText.dart';
-
+import 'component/ExampleMagicAlertDialog.dart';
 import 'component/ExampleMagicButton.dart';
 
 void main() {
@@ -75,37 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const Divider(),
               ExampleMagicDropdown(),
               const Divider(),
-              Row(
-                children: [
-                  MagicButton(() {
-                    showMagicDialog(context,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              Icons.add,
-                              size: 400,
-                            ),
-                            MagicText("Halo"),
-                          ],
-                        ));
-                  }),
-                  MagicButton(() {
-                    showMagicAlertDialog(
-                      context,
-                      title: "Perhatian",
-                      content: "Terjadi Kesalahan.",
-                      iconType: EnumDialogIconType.failed,
-                      barrierDismissable: true,
-                      textPrimary: "Ulangi",
-                      onPrimary: (){
-
-                      },
-                      background: Colors.blue,
-                    );
-                  }, text: "Show Magic Alert Dialog",),
-                ],
-              ),
+              const ExampleMagicAlertDialog(),
               const Divider(),
               ExampleMagicLayout(),
               // autoComplete()

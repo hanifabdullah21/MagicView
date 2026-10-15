@@ -55,7 +55,7 @@ showMagicAlertDialog(
   MagicTextStyle? contentStyle,
 
   /// Mode icon. Diambil dari EnumDialogIconType yang berisi none, success, failed, warning, custom. Secara default bernilai EnumDialogIconType.none
-  EnumDialogIconType? iconType = EnumDialogIconType.warning,
+  EnumDialogIconType? iconType = EnumDialogIconType.none,
 
   /// Jika iconType bernilai EnumDialogIconType.custom, anda dapat mengisi icon disini
   Widget? icon,
@@ -115,6 +115,12 @@ showMagicAlertDialog(
       const width = 420.0;
       const minDialogHeight = (width * 186) / 286;
       final maxDialogHeight = MediaQuery.sizeOf(context).height - 100;
+      final hasPrimaryButton = textPrimary != null && onPrimary != null;
+      final hasSecondaryButton = textSecondary != null && onSecondary != null;
+      final hasButtons = hasPrimaryButton || hasSecondaryButton;
+      final hasIcon = iconType != EnumDialogIconType.none;
+      final hasTitle = title != null;
+      final useDesignMinHeight = hasIcon || hasTitle || hasButtons;
 
       return MagicDialog(
         background: Colors.transparent,
@@ -133,12 +139,15 @@ showMagicAlertDialog(
                     : maxDialogHeight;
 
                 const verticalPadding = 48.0;
-                var fixedParts = 16.0 + 4.0 + 56.0;
-                if (iconType != EnumDialogIconType.none) {
+                var fixedParts = 0.0;
+                if (hasIcon) {
                   fixedParts += 64 + 16;
                 }
-                if (title != null) {
+                if (hasTitle) {
                   fixedParts += 40 + 16;
+                }
+                if (hasButtons) {
+                  fixedParts += 16 + 4 + 56;
                 }
                 final innerMaxHeight =
                     (availableHeight - verticalPadding).clamp(0.0, availableHeight);
@@ -176,20 +185,27 @@ showMagicAlertDialog(
                         color: Colors.transparent,
                         child: ConstrainedBox(
                           constraints: BoxConstraints(
-                            minHeight: minDialogHeight - verticalPadding,
+                            minHeight: useDesignMinHeight
+                                ? minDialogHeight - verticalPadding
+                                : 0,
                             maxHeight: innerMaxHeight,
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: useDesignMinHeight
+                                ? MainAxisAlignment.center
+                                : MainAxisAlignment.start,
                             children: [
-                              if (iconType != EnumDialogIconType.none) ...[
-                                icon ?? const SizedBox.shrink(),
+                              if (hasIcon) ...[
+                                Center(child: icon ?? const SizedBox.shrink()),
                                 const SizedBox(height: 16),
                               ],
-                              if (title != null) ...[
+                              if (hasTitle) ...[
                                 MagicText.head(
                                   title!,
                                   style: titleStyle,
+                                  textAlign: TextAlign.center,
                                 ),
                                 const SizedBox(height: 16),
                               ],
@@ -201,57 +217,50 @@ showMagicAlertDialog(
                                   physics: const ClampingScrollPhysics(),
                                   child: MagicText(
                                     content ?? "",
-                                    style: contentStyle,
+                                    style: contentStyle?.copyWith(
+                                      textAlign: TextAlign.center,
+                                    ),
                                     textAlign: TextAlign.center,
                                     softWrap: true,
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 16),
-                              Row(
-                                children: [
-                                  Visibility(
-                                    visible: textSecondary != null &&
-                                        onSecondary != null,
-                                    child: Expanded(
-                                      flex: 1,
-                                      child: MagicButton(
-                                        onSecondary,
-                                        text: "$textSecondary",
-                                        textColor: textColorSecondary,
-                                        strokeColor: colorSecondary ??
-                                            MagicFactory.colorBrand2,
-                                        strokeWidth: 2,
-                                        textSize: textSizeSecondary,
-                                        background: Colors.white,
+                              if (hasButtons) ...[
+                                const SizedBox(height: 16),
+                                Row(
+                                  children: [
+                                    if (hasSecondaryButton)
+                                      Expanded(
+                                        flex: 1,
+                                        child: MagicButton(
+                                          onSecondary,
+                                          text: "$textSecondary",
+                                          textColor: textColorSecondary,
+                                          strokeColor: colorSecondary ??
+                                              MagicFactory.colorBrand2,
+                                          strokeWidth: 2,
+                                          textSize: textSizeSecondary,
+                                          background: Colors.white,
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Visibility(
-                                    visible: (textPrimary != null &&
-                                            onPrimary != null) &&
-                                        (textSecondary != null &&
-                                            onSecondary != null),
-                                    child: const SizedBox(width: 16),
-                                  ),
-                                  Visibility(
-                                    visible: textPrimary != null &&
-                                        onPrimary != null,
-                                    child: Expanded(
-                                      flex: 1,
-                                      child: MagicButton(
-                                        onPrimary,
-                                        text: "$textPrimary",
-                                        textColor: textColorPrimary,
-                                        textSize: textSizePrimary,
-                                        background: colorPrimary ??
-                                            MagicFactory.colorBrand,
+                                    if (hasPrimaryButton && hasSecondaryButton)
+                                      const SizedBox(width: 16),
+                                    if (hasPrimaryButton)
+                                      Expanded(
+                                        flex: 1,
+                                        child: MagicButton(
+                                          onPrimary,
+                                          text: "$textPrimary",
+                                          textColor: textColorPrimary,
+                                          textSize: textSizePrimary,
+                                          background: colorPrimary ??
+                                              MagicFactory.colorBrand,
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 4),
+                                  ],
+                                ),
+                                const SizedBox(height: 4),
+                              ],
                             ],
                           ),
                         ),
