@@ -55,7 +55,7 @@ showMagicAlertDialog(
   MagicTextStyle? contentStyle,
 
   /// Mode icon. Diambil dari EnumDialogIconType yang berisi none, success, failed, warning, custom. Secara default bernilai EnumDialogIconType.none
-  EnumDialogIconType? iconType = EnumDialogIconType.none,
+  EnumDialogIconType? iconType = EnumDialogIconType.warning,
 
   /// Jika iconType bernilai EnumDialogIconType.custom, anda dapat mengisi icon disini
   Widget? icon,
